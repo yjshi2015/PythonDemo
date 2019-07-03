@@ -27,3 +27,33 @@ print type(soup.title.string)
 # 对象种类,Comment,即注释
 print soup.span.string
 print type(soup.span.string)
+
+# 遍历文档树:子节点  .contents和children属性仅仅包含Tag的直接子节点,不会包含跟它并列的兄弟节点
+print '遍历文档树:子节点--->contents'
+print len(soup.div.contents)
+print soup.div.contents
+for child in soup.div.contents:
+    print '注意:开头和结尾的元素都为空元素--------------------'
+    print child
+
+print '遍历文档树:子节点--->children,它返回的是个迭代器'
+for child in soup.div.children:
+    print child
+
+print '遍历文档树:子孙节点,这个迭代器不断循环迭代,一层层的解析,直到最后一个子孙元素,厉害!!!'
+for child in soup.div.descendants:
+    print '--------------------开始遍历子孙节点'
+    print child
+
+print '遍历文档树:获取节点内容'
+print soup.head.string
+print soup.title.string
+print soup.div.string
+for string in soup.div.stripped_strings:
+    print '瞅瞅是啥--------'
+    print string
+
+print '遍历文档树:获取兄弟节点'
+for sibling in soup.div.next_siblings:
+    print '看看你的兄弟是啥'
+    print sibling
