@@ -17,6 +17,7 @@ try:
         if h2 != None:
             # 获取标题
             h2_title = h2.string.encode('utf-8')
+            # [2012-5-19 3:3:52] 七星鲁王 第一章 血尸
             pattern = re.compile(r'\s*\[(.*)\]\s+(.*)')
             # 获取所有a标签中的URL和标题
             for a in mulu.find(class_='box').find_all('a'):

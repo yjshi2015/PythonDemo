@@ -26,5 +26,6 @@ i=0
 for img in soup.find_all('img'):
     # 根据标签中的属性获取属性值
     src = img.get('src')
+    # 核心:下载媒体资源
     urllib.urlretrieve('https:'+src, '/home/syj/下载/syj_img'+str(i)+'.jpg', Schedule)
     i += 1
