@@ -24,7 +24,7 @@ class SpiderMan(object):
                 print '1-------->new_url', new_url
                 # 下载网页
                 html = self.downloader.download(new_url)
-                print '2-------->html', html
+                print '2-------->html'
                 # 解析抽取网页
                 new_urls, data = self.parser.parser(new_url, html)
                 print '3-------->new_urls, data', new_urls, data

@@ -30,7 +30,7 @@ class HtmlParser(object):
         '''
         new_urls = set()
         # 抽取符合要求的a标签 todo 优化为查找摘要下的a标签
-        links = soup.find_all('a', href=re.compile(r'/item'))
+        links = soup.find_all('a', href=re.compile(r'/item/.*/[0-9]+'))
         for link in links:
             # 提取href属性 todo 另一种写法 new_url = link['href']
             new_url = link.get('href')
@@ -48,9 +48,9 @@ class HtmlParser(object):
         '''
         data = {}
         data['url'] = page_url
-        title = soup.find('dd', calss_='lemmaWgt-lemmaTitle lemmaWgt-lemmaTitle-').find('h1')
-        print '=======', title
-        data['title'] = title.get_text()
+        title = soup.find('dd', class_='lemmaWgt-lemmaTitle-title').find('h1')
+        print '=======', title, title.string
+        data['title'] = title.string
         summary = soup.find('div', class_='lemma-summary')
         # 获取Tag标签中包含的所有文本内容,包括子孙Tag的内容,并将结果作为Unicode字符串返回
         data['summary'] = summary.get_text()
