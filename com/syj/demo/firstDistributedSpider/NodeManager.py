@@ -1,8 +1,6 @@
 # coding=utf-8
 
 from DataOutput import DataOutput
-from HtmlDownloader import HtmlDownloader
-from HtmlParser import HtmlParser
 from UrlManager import UrlManager
 
 import time
