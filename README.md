@@ -14,5 +14,8 @@ python学习备忘
  创建数据库
  -7 use spider_db
  切换到对应的数据库上
- -8 sudo pip install MySQL-python
+ -8 sudo pip install mysql-python
  python中使用MySQL
+ -8.1 sudo apt-get install python-mysqldb
+      pip install mysql-python
+ 上述第8步失败,故使用8.1方案,同样不行
