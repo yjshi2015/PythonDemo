@@ -3,7 +3,7 @@ python学习备忘
 
 # mysql安装步骤
  - 1 sudo apt-get install mysql-server
- (过程中需要设置root用户的密码syjmysql2015)
+ (过程中需要设置root用户的密码 \*\*\*mysql\*\*\*\*)
  - 2 sudo apt-get install mysql-client
  - 3 sudo apt-get install libmysqlclient-dev
  - 4 sudo netstat -tap | grep mysql
