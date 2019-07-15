@@ -20,6 +20,33 @@ python学习备忘
       pip install mysql-python
  上述第8步失败,故使用8.1方案,同样不行
 
+# 配置MySQL
+ - 1. 允许远程访问mysql，编辑文件/etc/mysql/mysql.conf.d/mysqld.cnf,注释掉bind-address = 127.0.0.1：  
+      `sudo vi /etc/mysql/mysql.conf.d/mysqld.cnf`
+ - 2. 进入MySQL服务
+      `mysql -uroot -p`
+ - 3. 允许指定用户访问：
+      `GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY 'syjmysql2015' WITH GRANT OPTION;`
+      (IP这里，可以使用%来表示所有IP)
+       `flush privileges;`
+ - 4. 执行quit命令退出mysql服务，
+      `exit`
+ - 5. 执行如下命令重启mysql：
+      `service mysql restart`
+
+# 安装MySQL客户端
+ - 1. 可参考文章
+      https://cloud.tencent.com/developer/article/1343695
+ - 2. 使用slqyog工具,访问官网,注册下载免费版
+      https://www.webyog.com/
+ - 3. 使用navicat,官网
+      http://www.navicat.com
+ - 4. 
+      
+                
+# 终端连接数据库
+ - 1. `mysql -uroot -p`,再输入密码即可
+ - 2. 
 # mongodb安装步骤
   - 1 在opt目录下创建mongodb目录
   `mkdir /opt/mongodb`
