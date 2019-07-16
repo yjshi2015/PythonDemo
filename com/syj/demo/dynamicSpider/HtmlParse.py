@@ -9,13 +9,13 @@ class HtmlParse(object):
     # 提取网页中的所有电影的链接地址
     def parser_url(self, page_url, response):
         pattern = re.compile(r'(http://movie.mtime.com/(\d+)/)')
+        # 每一个匹配的连接,都被分成了2部分,例如:u'http://movie.mtime.com/247496/', u'247496'
         urls = pattern.findall(response)
         if urls != None:
             # 将URL去重
             return list(set(urls))
         else:
             return None
-
 
     # 根据某部电影的入口链接,解析出动态加载的内容,并提取我们所需要的字段
     '''
@@ -36,9 +36,89 @@ class HtmlParse(object):
                 print '解析返回的json串失败', e
                 return None
             if isRelease:
-                if value.get('value').get('hotValue') == None:
+                if value.get('value').get('hotValue')==None:
                     return self._parser_release(page_url, value)
                 else:
                     return self._parser_no_release(page_url, value, isRelease=2)
             else:
                 return self._parser_no_release(page_url, value)
+
+
+    def _parser_release(self, page_url, value):
+        '''
+        解析已经上映的影片
+        :param page_url: 电影连接
+        :param value: json数据
+        :return:
+        '''
+        try:
+            isRelease = 1
+            movieRating = value.get('value').get('movieRating')
+            boxOffice = value.get('value').get('boxOffice')
+            movieTitle = value.get('value').get('movieTitle')
+
+            RPictureFinal = movieRating.get('RPictureFinal')
+            RStoryFinal = movieRating.get('RStoryFinal')
+            RDirectorFinal = movieRating.get('RDirectorFinal')
+            ROtherFinal = movieRating.get('ROtherFinal')
+            RatingFinal = movieRating.get('RatingFinal')
+
+            MovieId = movieRating.get('MovieId')
+            Usercount = movieRating.get('Usercount')
+            AttitudeCount = movieRating.get('AttitudeCount')
+
+            TotalBoxOffice = boxOffice.get('TotalBoxOffice')
+            TotalBoxOfficeUnit = boxOffice.get('TotalBoxOfficeUnit')
+            TodayBoxOffice = boxOffice.get('TodayBoxOffice')
+            TodayBoxOfficeUnit = boxOffice.get('TodayBoxOfficeUnit')
+
+            ShowDays = boxOffice.get('ShowDays')
+            try:
+                Rank = boxOffice.get('Rank')
+            except Exception, e:
+                Rank = 0
+            # 返回提取的内容
+            return (MovieId, movieTitle, RatingFinal,
+                    ROtherFinal, RPictureFinal, RDirectorFinal,
+                    RStoryFinal, Usercount, AttitudeCount,
+                    TotalBoxOffice + TotalBoxOfficeUnit,
+                    TodayBoxOffice + TodayBoxOfficeUnit,
+                    Rank, ShowDays, isRelease)
+        except Exception, e:
+            print e, page_url, value
+            return None
+
+    def _parser_no_release(self, page_url, value, isRelease=0):
+        '''
+        解析未上映的影片
+        :param page_url: 电影连接
+        :param value: json数据
+        :return:
+        '''
+        try:
+            movieRating = value.get('value').get('movieRating')
+            movieTitle = value.get('value').get('movieTitle')
+
+            RPictureFinal = movieRating.get('RPictureFinal')
+            RStoryFinal = movieRating.get('RStoryFinal')
+            RDirectorFinal = movieRating.get('RDirectorFinal')
+            ROtherFinal = movieRating.get('ROtherFinal')
+            RatingFinal = movieRating.get('RatingFinal')
+
+            MovieId = movieRating.get('MovieId')
+            Usercount = movieRating.get('Usercount')
+            AttitudeCount = movieRating.get('AttitudeCount')
+
+            try:
+                Rank = value.get('value').get('hotValue').get('Ranking')
+            except Exception, e:
+                Rank = 0
+            # 返回提取的内容
+            return (MovieId, movieTitle, RatingFinal,
+                    ROtherFinal, RPictureFinal, RDirectorFinal,
+                    RStoryFinal, Usercount, AttitudeCount,
+                    u'无', u'无',
+                    Rank, 0, isRelease)
+        except Exception, e:
+            print e, page_url, value
+            return None
