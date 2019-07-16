@@ -30,11 +30,12 @@ class DataOutput(object):
         :return:
         '''
         for data in self.datas:
-            self.cur.execute("insert into %s (MovieId,MovieTitle,RatingFinal,ROtherFinal,"
+            print 'data=============>', data
+            self.cur.execute("insert into movie_info (MovieId,MovieTitle,RatingFinal,ROtherFinal,"
                              "RPictureFinal,RDirectorFinal,RStoryFinal,Usercount,AttitudeCount,"
-                             "TotalBoxOffice,TodayBoxOffice,Rank,ShowDays,isRelease)"
-                             " values(?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
-                             ""% table_name, data)
+                             "TotalBoxOffice,TodayBoxOffice,Rank,ShowDays,"
+                             "isRelease) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
+                             ""%(data,))
             self.datas.remove(data)
             self.con.commit()
             print '--------->数据写入成功ok'

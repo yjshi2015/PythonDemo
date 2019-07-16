@@ -32,6 +32,7 @@ class SpiderMan(object):
                 print 'ajax接口返回内容-------->', rank_content
                 data = self.parser.parser_json(rank_url, rank_content)
                 self.output.store_data(data)
+                break
             except Exception, e:
                 print '获取ajax动态数据失败', e
         self.output.output_end()
