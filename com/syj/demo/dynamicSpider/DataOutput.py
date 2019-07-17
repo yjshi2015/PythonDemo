@@ -31,11 +31,10 @@ class DataOutput(object):
         '''
         for data in self.datas:
             print 'data=============>', data
-            self.cur.execute("insert into movie_info (MovieId,MovieTitle,RatingFinal,ROtherFinal,"
-                             "RPictureFinal,RDirectorFinal,RStoryFinal,Usercount,AttitudeCount,"
-                             "TotalBoxOffice,TodayBoxOffice,Rank,ShowDays,"
-                             "isRelease) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
-                             ""%(data,))
+            print 'type data=============>', type(data)
+            sql = "insert into movie_info (MovieId,MovieTitle,RatingFinal,ROtherFinal,RPictureFinal,RDirectorFinal,RStoryFinal,Usercount,AttitudeCount,TotalBoxOffice,TodayBoxOffice,Rank,ShowDays,isRelease) values %s  " % (data,)
+            print 'sql==============>', sql
+            self.cur.execute(sql)
             self.datas.remove(data)
             self.con.commit()
             print '--------->数据写入成功ok'

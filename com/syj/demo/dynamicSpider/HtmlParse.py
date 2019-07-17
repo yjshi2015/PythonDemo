@@ -52,10 +52,13 @@ class HtmlParse(object):
         :return:
         '''
         try:
+            print '_parser_release---------->'
             isRelease = 1
             movieRating = value.get('value').get('movieRating')
             boxOffice = value.get('value').get('boxOffice')
             movieTitle = value.get('value').get('movieTitle')
+            print 'type movieTitle---------->' + type(movieTitle)
+            print 'unicode_escape---------->' + movieTitle.decode('unicode_escape')
 
             RPictureFinal = movieRating.get('RPictureFinal')
             RStoryFinal = movieRating.get('RStoryFinal')
@@ -81,8 +84,8 @@ class HtmlParse(object):
             return (MovieId, movieTitle, RatingFinal,
                     ROtherFinal, RPictureFinal, RDirectorFinal,
                     RStoryFinal, Usercount, AttitudeCount,
-                    TotalBoxOffice + TotalBoxOfficeUnit,
-                    TodayBoxOffice + TodayBoxOfficeUnit,
+                    (TotalBoxOffice + TotalBoxOfficeUnit),
+                    (TodayBoxOffice + TodayBoxOfficeUnit),
                     Rank, ShowDays, isRelease)
         except Exception, e:
             print e, page_url, value
@@ -96,9 +99,12 @@ class HtmlParse(object):
         :return:
         '''
         try:
+            print '_parser_no_release---------->'
             movieRating = value.get('value').get('movieRating')
             movieTitle = value.get('value').get('movieTitle')
 
+            print 'type movieTitle---------->' + type(movieTitle)
+            print 'unicode_escape---------->' + movieTitle.decode('unicode_escape')
             RPictureFinal = movieRating.get('RPictureFinal')
             RStoryFinal = movieRating.get('RStoryFinal')
             RDirectorFinal = movieRating.get('RDirectorFinal')
@@ -117,7 +123,7 @@ class HtmlParse(object):
             return (MovieId, movieTitle, RatingFinal,
                     ROtherFinal, RPictureFinal, RDirectorFinal,
                     RStoryFinal, Usercount, AttitudeCount,
-                    u'无', u'无',
+                    '无', '无',
                     Rank, 0, isRelease)
         except Exception, e:
             print e, page_url, value
