@@ -31,10 +31,12 @@ class DataOutput(object):
         '''
         for data in self.datas:
             print 'data=============>', data
-            print 'type data=============>', type(data)
+            print 'type data为元组,但是每个元素都为unicode编码=============>', type(data)
             sql = "insert into movie_info (MovieId,MovieTitle,RatingFinal,ROtherFinal,RPictureFinal,RDirectorFinal,RStoryFinal,Usercount,AttitudeCount,TotalBoxOffice,TodayBoxOffice,Rank,ShowDays,isRelease) values %s  " % (data,)
             print 'sql==============>', sql
-            self.cur.execute(sql)
+            print 'sql.decode("unicode_escape")==============>', sql.decode("unicode_escape")
+            # 奇淫技巧解决Unicode反编码后汉字还带u的问题
+            self.cur.execute(sql.decode("unicode_escape").replace('u\'', '\''))
             self.datas.remove(data)
             self.con.commit()
             print '--------->数据写入成功ok'

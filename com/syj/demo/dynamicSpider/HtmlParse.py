@@ -30,6 +30,8 @@ class HtmlParse(object):
         if firstJson != None:
             # json模块加载字符串
             value = json.loads(firstJson)
+            print '---------->反序列化后value:', value
+            print '---------->反序列化后value类型type为dict:', type(value)
             try:
                 isRelease = value.get('value').get('isRelease')
             except Exception, e:
@@ -103,8 +105,6 @@ class HtmlParse(object):
             movieRating = value.get('value').get('movieRating')
             movieTitle = value.get('value').get('movieTitle')
 
-            print 'type movieTitle---------->' + type(movieTitle)
-            print 'unicode_escape---------->' + movieTitle.decode('unicode_escape')
             RPictureFinal = movieRating.get('RPictureFinal')
             RStoryFinal = movieRating.get('RStoryFinal')
             RDirectorFinal = movieRating.get('RDirectorFinal')
@@ -119,11 +119,17 @@ class HtmlParse(object):
                 Rank = value.get('value').get('hotValue').get('Ranking')
             except Exception, e:
                 Rank = 0
+
+            print 'movieRating----------->', movieRating
+            print 'type RPictureFinal---------->', type(RPictureFinal)
+            print 'movieTitle type---------->', type(movieTitle)
+            print 'movieTitle---------->', movieTitle.encode('utf-8')
+
             # 返回提取的内容
             return (MovieId, movieTitle, RatingFinal,
                     ROtherFinal, RPictureFinal, RDirectorFinal,
                     RStoryFinal, Usercount, AttitudeCount,
-                    '无', '无',
+                    u'无', u'无',
                     Rank, 0, isRelease)
         except Exception, e:
             print e, page_url, value

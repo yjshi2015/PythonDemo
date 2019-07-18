@@ -29,7 +29,8 @@ class SpiderMan(object):
                     '&t=%s' \
                     '&Ajax_CallBackArgument0=%s' % (url[0], t, url[1])
                 rank_content = self.downloader.downloader(rank_url)
-                print 'ajax接口返回内容-------->', rank_content
+                print 'ajax接口返回内容,汉字正常显示-------->', rank_content
+                print 'ajax接口返回内容type为unicode-------->', type(rank_content)
                 data = self.parser.parser_json(rank_url, rank_content)
                 self.output.store_data(data)
                 break
