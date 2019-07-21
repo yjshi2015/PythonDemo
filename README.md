@@ -64,3 +64,23 @@ python学习备忘
   `./mongo`
   - 8 使用Python链接mongo,则需要先安装驱动,如果提示权限不够,增加--user参数
   `pip install --user pymongo`
+
+# Python编码问题
+  https://www.cnblogs.com/gengyantao/p/7808687.html
+  
+# PhantomJS
+  - 1. 简介
+      如果一个页面Ajax请求很多,有时请求参数还进行了加密,我们手动分析每一个Ajax请求,
+      将成为一项繁重的工作.通过PhantomJS,可直接从浏览器提取渲染好的HTML文档,不进行
+      Ajax请求分析.
+      PhantomJS可以看做是一个没有界面的浏览器,它既有Firefox浏览器/Google浏览器的功能,
+      又因为没有界面而更加快捷,占用更小内存
+      PhantomJS是一个基于WebKit的服务器端JavaScript API.它全面支持web而无需浏览器支
+      持,不仅运行快,原生支持各种Web标准:DOM处理/CSS选择器/JSON/Canvas和SVG,可用于页面
+      自动化/网络检测/网页截屏以及无页面测试等.
+  - 2. 下载安装
+      地址:https://phantomjs.org/download.html
+  - 3. 解压
+      tar -xjvf /tmp/mozilla_syj0/phantomjs-2.1.1-linux-x86_64.tar.bz2 -C /usr/local/phantomJS/
+  - 4. 配置环境变量
+      `vim /etc/profile` 要重启后才生效
