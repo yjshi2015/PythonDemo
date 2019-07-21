@@ -84,3 +84,13 @@ python学习备忘
       tar -xjvf /tmp/mozilla_syj0/phantomjs-2.1.1-linux-x86_64.tar.bz2 -C /usr/local/phantomJS/
   - 4. 配置环境变量
       `vim /etc/profile` 要重启后才生效
+
+# Selenium
+  - 1. Selenium是一个自动化测试工具,支持浏览器驱动,可以对浏览器进行控制.而且Selenium
+  支持多种语言开发,比如Java/C/Ruby/Python,因此Python+Selenium+PhantomJS的组合就产
+  生了.PhantomJS负责渲染解析JavaScript,Selenium负责驱动浏览器和Python对接,Python
+  负责后期处理
+  - 2.通过idea的project structure-\>sdk-\>package安装
+  - 3.在Selenium官网下载Firefox浏览器驱动,比较难找:https://www.seleniumhq.org/download/
+  - 4.解压到`/usr/local/firefoxDriver/`路径下
+  - 5.配置环境变量 `sudo vim /etc/profile`,`source /etc/profile`使其立即生效
