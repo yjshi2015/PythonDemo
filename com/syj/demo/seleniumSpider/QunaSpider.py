@@ -61,7 +61,7 @@ class QunaSpider(object):
             # 加载下一页
             try:
                 next_page = WebDriverWait(driver, 10).until(
-                    EC.visibillity_of(driver.find_element_by_css_selector(".item.next"))
+                    EC.visibility_of(driver.find_element_by_css_selector(".item.next"))
                 )
                 next_page.click()
                 page_num += 1

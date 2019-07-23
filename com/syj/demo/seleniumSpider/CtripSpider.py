@@ -38,12 +38,6 @@ class CtripSpider(object):
             except Exception, e:
                 print ('----->等待10s失败', e)
                 break
-            time.sleep(5)
-
-            # 分两次获取一页完整的数据,第二次让driver执行js脚本,把网页拉到底部
-            js = "window.scrollTo(0, document.body.scrollHeight);"
-            driver.execute_script(js)
-            time.sleep(5)
 
             htm_const = driver.page_source
             soup = BeautifulSoup(htm_const, 'html.parser', from_encoding='utf-8')
@@ -60,8 +54,8 @@ class CtripSpider(object):
 
             # 加载下一页
             try:
-                next_page = WebDriverWait(driver, 20).until(
-                    EC.visibillity_of(driver.find_element_by_id("downHerf"))
+                next_page = WebDriverWait(driver, 10).until(
+                    EC.visibility_of(driver.find_element_by_id("downHerf"))
                 )
                 next_page.click()
                 page_num += 1
