@@ -11,14 +11,14 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
 import time
 
-class QunaSpider(object):
+class CtripSpider(object):
 
     def get_hotel(self, driver, to_city, fromdate, todate):
 
-        ele_toCity = driver.find_element_by_id('toCity')
-        ele_fromDate = driver.find_element_by_id('fromDate')
-        ele_toDate = driver.find_element_by_id('toDate')
-        ele_search = driver.find_element_by_xpath("//li[@class='b_search_box_area_btn']/button")
+        ele_toCity = driver.find_element_by_id('txtCity')
+        ele_fromDate = driver.find_element_by_id('txtCheckIn')
+        ele_toDate = driver.find_element_by_id('txtCheckOut')
+        ele_search = driver.find_element_by_id("btnSearch")
         ele_toCity.clear()
         ele_toCity.send_keys(to_city)
         ele_toCity.click()
@@ -47,7 +47,7 @@ class QunaSpider(object):
 
             htm_const = driver.page_source
             soup = BeautifulSoup(htm_const, 'html.parser', from_encoding='utf-8')
-            infos = soup.find_all(class_="item_hotel_info")
+            infos = soup.find_all(class_="hotel_new_list J_HotelListBaseCell")
             f = codecs.open(unicode(to_city)+unicode(fromdate)+u'.html', 'a', 'utf-8')
             for info in infos:
                 f.write(str(page_num) + '--'*50)
@@ -60,14 +60,14 @@ class QunaSpider(object):
 
             # 加载下一页
             try:
-                next_page = WebDriverWait(driver, 10).until(
-                    EC.visibillity_of(driver.find_element_by_css_selector(".item.next"))
+                next_page = WebDriverWait(driver, 20).until(
+                    EC.visibillity_of(driver.find_element_by_id("downHerf"))
                 )
                 next_page.click()
                 page_num += 1
                 time.sleep(10)
             except Exception, e:
-                print ('------->加载'+str(page_num)+'页数据失败', e)
+                print (u'------->加载'+str(page_num)+u'页数据失败', e)
                 break
 
     def crawl(self, root_url, to_city):
@@ -85,6 +85,6 @@ class QunaSpider(object):
 
 
 if __name__ == '__main__':
-    spider = QunaSpider()
+    spider = CtripSpider()
     # spider.crawl('http://hotel.qunar.com/', u"北京")
-    spider.crawl('http://hotel.qunar.com/city/beijing_city/#fromDate=2019-07-23&toDate=2019-07-24&ex_track=auto_4e0d874a', u"北京")
+    spider.crawl('https://hotels.ctrip.com/hotel/beijing1#ctm_ref=ctr_hp_sb_lst', u"北京")
