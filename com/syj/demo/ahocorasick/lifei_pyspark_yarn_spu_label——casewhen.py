@@ -278,6 +278,9 @@ def product_ip_pyspark(dt):
                 ip_words_set[word] = ip_word['second_prefer_name']
     IP_SET = sc.broadcast(ip_words_set)
    # sc.broadcast(IP_SET)
+    print '自己添加的log----------->'
+    print (type(IP_SET.value))
+    print (IP_SET.value)
     IP_EXTRACT = ACAutomaton(IP_SET.value)
     def extract_ip_pw(title):
         title = title.strip()
