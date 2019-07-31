@@ -110,3 +110,68 @@
         t.initTime = (new Date).getTime(),
         ```
         可以断定这是一个判断这是一个从输入登录信息,一直到点击登录按钮提交的这段时间,故用之前的值也行
+   `callback` 在**调试器**搜索callback,一无所获,搜索bd__pcbs__发现如下脚本,可以猜测这既是callback的生成逻辑
+        ```
+        u = c.getUniqueId('bd__pcbs__');
+        t[r.queryField || 'callback'] = 'parent.' + u;
+        e.getUniqueId = function (e) {
+        return e + Math.floor(2147483648 * Math.random()).toString(36)
+        },
+        ```
+   `passport` 在**调试器**中搜索passport,发现如下脚本,可认为是密码的生成逻辑,对password通过公钥pubkey对密码进行加密,最后对输
+        出进行base64编码,即为最后的加密密码(虽然我没看明白)
+        ```
+        var r = e._SBCtoDBC(e.getElement('password').value);
+        if (e.RSA && e.rsakey) {
+        var a = r;
+        a.length < 128 && !e.config.safeFlag && (o.password = baidu.url.escapeSymbol(e.RSA.encrypt(a)), o.rsakey = e.rsakey, o.crypttype = 12)
+        }
+        ```
+   `traceId` 在**网络请求**的post之前,并未找到含有traceId的请求,故判定是在前台js中产生而非后台服务端产生,在**调试器**中全局搜
+        traceId,发现有如下逻辑,总之也是跟时间相关的,因此用之前的traceID也是可以的
+        ```
+        createTraceID: function () {
+        var e = this;
+        return e.headID + e.flowID + e.cases
+        },
+        initTraceID: function (e) {
+        var t = this;
+        e && e.length > 0 ? (t.headID = e.slice(0, 6), t.flowID = e.slice(6, 8))  : t.destory()
+        },
+        getRandom: function () {
+        return parseInt(90 * Math.random() + 10, 10)
+        },
+        createHeadID: function () {
+        var e = this,
+        t = (new Date).getTime() + e.getRandom().toString(),
+        n = Number(t).toString(16),
+        i = n.length,
+        s = n.slice(i - 6, i).toUpperCase();
+        e.headID = s
+        },
+        getTraceID: function (e) {
+        var t = this,
+        n = e && e.traceid || '';
+        t.initTraceID(n)
+        },
+        getFlowID: function (e) {
+        var t = {
+        login: '01',
+        reg: '02'
+        };
+        return t[e]
+        },
+        ```
+   `ds/tk` 在**核心POST请求**前附近处,发现如下GET请求,故需要追溯`ak/as/fs/callback/v`的来源,mygod!!!
+
+        url:https://passport.baidu.com/viewlog?ak=1e3f2dd1c81f2075171a547893391274&as=65ce3ff4&fs=p6%2BgRB2AHghmigewrfBvCZGc1ky%2FpXz6U%2FI7URpWHxy8y%2FbLpEEyOlFryorre8KiOw4CRwKb99RYsTXRrsIMfcwckdHurRQ4K8re6DK9XJSqg2vf77CZYUx5tcSbSD%2BIIgI2yDBg5VWtzp%2Bnh1f4X1gp81EEBttzhil%2Bs%2F87goc16JNvHci5PutTMKylVLnYpzrYNHhyj81dbLpNgWsms5QCZDAxpL3ajJXLgfI78ubqejfXrIVvwSUTfsek%2BB%2F90mxJCZ3ekLOxcY7gYlUZtEf26wPAzGB%2BDIGZMXXfBj2ePpu3b0XKgyUv%2B%2BQqXCh2R9LfEBxwvzRdG0bp4oYLXU0pMWASyFE4gt9Fy%2B87FcKfdjWPb6jn6SmYrKgBbMgQGxwc4T35vINThZ%2FWmqy843W7GMfM0B6Cz3C9tvkqpOJRfnPFwh%2BkYo%2FDQTMdzyEpK%2BbcAgx9dj1S%2FYIAgcSW8w2%2BhiXsJxWlRfkRavtWYX6kj0RUps%2Bb6C%2FvptiZvtrR8P%2Ban%2B%2Fa9tdvFiWEh9UEKfPa6LKmPNAUsngzn48GEC9416irL3etPj3Qu6M50ulcs3yvSR2c3QGpWqMtjoK3L24j%2BapIB6fdn80dk%2Bsf4evyn%2BV5v02%2BovhBTbRQt5Ka%2FrnFRvFRZXrbnctIjghxZ7z5Ppir8X22tiQqiT0VKx%2BFbgUSrN0rRXpJsdr7LKYDx50S97ZecEILRJ7zJnqwPL2k%2BCU5PiOnm%2FDche1SbQIoWIoUNBJgbxySs4LWWvOUwDZJCwWJ4sZpuS8s5lIn5VNFNhSK%2FVFw2TPEhaKWVDTPKQ9yYVvqkUncd28aoH1c&callback=jsonpCallbackb5621&v=5089
+        request:
+            ak	1e3f2dd1c81f2075171a547893391274
+            as	65ce3ff4
+            fs	p6 gRB2AHghmigewrfBvCZGc1ky/pXz6U/I7URpWHxy8y/bLpEEyOlFryorre8KiOw4CRwKb99RYsTXRrsIMfcwckdHurRQ4K8re6DK9XJSqg2vf77CZYUx5tcSbSD IIgI2yDBg5VWtzp nh1f4X1gp81EEBttzhil s/87goc16JNvHci5PutTMKylVLnYpzrYNHhyj81dbLpNgWsms5QCZDAxpL3ajJXLgfI78ubqejfXrIVvwSUTfsek B/90mxJCZ3ekLOxcY7gYlUZtEf26wPAzGB DIGZMXXfBj2ePpu3b0XKgyUv QqXCh2R9LfEBxwvzRdG0bp4oYLXU0pMWASyFE4gt9Fy 87FcKfdjWPb6jn6SmYrKgBbMgQGxwc4T35vINThZ/Wmqy843W7GMfM0B6Cz3C9tvkqpOJRfnPFwh kYo/DQTMdzyEpK bcAgx9dj1S/YIAgcSW8w2 hiXsJxWlRfkRavtWYX6kj0RUps b6C/vptiZvtrR8P an /a9tdvFiWEh9UEKfPa6LKmPNAUsngzn48GEC9416irL3etPj3Qu6M50ulcs3yvSR2c3QGpWqMtjoK3L24j apIB6fdn80dk sf4evyn V5v02 ovhBTbRQt5Ka/rnFRvFRZXrbnctIjghxZ7z5Ppir8X22tiQqiT0VKx FbgUSrN0rRXpJsdr7LKYDx50S97ZecEILRJ7zJnqwPL2k CU5PiOnm/Dche1SbQIoWIoUNBJgbxySs4LWWvOUwDZJCwWJ4sZpuS8s5lIn5VNFNhSK/VFw2TPEhaKWVDTPKQ9yYVvqkUncd28aoH1c
+            callback	jsonpCallbackb5621
+            v	5089
+        response:
+            tk	6512R9hoFakIvPLtWe3FQUdnThEnV0IHBx25neiXhr4XbrCPxhFDQwqAQGjLoqIa+KySskW7kOQtBghwSwIGEoDyNw==
+            as	65ce3ff4
+            ds	pPewyKpZ/srbBZqcvH0ErmnHk9drEOMndzncwXR7ieM5LvSryJsdTnPvE7WpNtLM+MNQxQr716TJwGOHLpj79iH0VSt8OldaS2DcdpXUjTz4/MXdN3pF8Fuj5ncnhzVoXVdowfu0UTgCemchvslqnKMKiUvGDukxyqVp45e2S/snOh3yE6Q16rQsFRVI4ZV3Afl0vxpkicw9Q653G1COyMBX3pyTmWLYVY88COm+iumcSBjppCcUo1pKWSDqU6/nDrt29IBZvQpWJG5+f6E0WqUrl1ey+kiyifPZexny6IN8xxYdMd8SriJSB/TZ9dpUY2VwU2ms/WQtenaTIt/9duQHIdY43YTf+wpXOeUWy0/LR94VRc/t/Gdd1LFl+KnteTo5QoCtSQaQV0qdmxECNrLJINVrd//eW3PIEwvfoP+BJYMacli659eBbHoPfZzk3jWVuyQVMbrKkGn27DOM1yoQ2W1/e2D7vspb2coJdgWddGoXCVXKp2zMEGoFXPRXTIXQltBrffOM/1RwseVoOQS9bNQ2nqae49zvbTV6RfuKm34Uz/N7bgo6lEsBpVnJzirX8OxeyZUVT3JNRuMX1KCMB9M+r+uFfk9RD4JB9w63geOKgIjwOu2B/toBPoTuRUYLZpZW+2L+lUe8NyjIxmWuJvEqB5IPsZI/YfXS/qR6DMy3uroDB/xTlvmp8fm0YEynVMSRoqcyAT6x+UESUwSdBqONjO9qxkszcP3fCxbXecV08p3ulhPgoYRFcajjSYKuik+A4YFJ/Wvav2y7DvbztMius73Rq0CcL8WOnXLjxFDDookoCFb0oGPF9w1fCAuqQCU9ILGISckGJZ+QTQ==

@@ -94,3 +94,13 @@ python学习备忘
   - 3.在Selenium官网下载Firefox浏览器驱动,比较难找:https://www.seleniumhq.org/download/
   - 4.解压到`/usr/local/firefoxDriver/`路径下
   - 5.配置环境变量 `sudo vim /etc/profile`,`source /etc/profile`使其立即生效
+  
+# JavaScript短路原理
+  - 1. 针对&&
+   + 只要“&&”前面是false，无论“&&”后面是true还是false，结果都将返“&&”前面的值;
+   + 只要“&&”前面是true，无论“&&”后面是true还是false，结果都将返“&&”后面的值;
+  - 2. 针对||
+   + 只要“||”前面为false,不管“||”后面是true还是false，都返回“||”后面的值。
+   + 只要“||”前面为true,不管“||”后面是true还是false，都返回“||”前面的值。
+  - 3. 真假判断逻辑
+   在js逻辑运算中，0、”“、null、false、undefined、NaN都会判为false，其他都为true
