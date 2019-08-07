@@ -1,6 +1,11 @@
 # PythonDemo
 python学习备忘
 
+# 使用IDEA搭建Python开发环境
+- 1. 在为每个项目设置Project Structures时,常常会遇到问题,即项目B在安装依赖包时,包的目录为项目A指定的SDK目录,
+  导致项目B在运行时提示`no module named XXX`,所以需要设置全局的SDK,即指定Python解释器的路径为全局路径,而非
+  在各子项目中设置Pyhton解释器
+
 # mysql安装步骤
  - 1 sudo apt-get install mysql-server
  (过程中需要设置root用户的密码 \*\*\*mysql\*\*\*\*)
@@ -104,3 +109,9 @@ python学习备忘
    + 只要“||”前面为true,不管“||”后面是true还是false，都返回“||”前面的值。
   - 3. 真假判断逻辑
    在js逻辑运算中，0、”“、null、false、undefined、NaN都会判为false，其他都为true
+
+# Scrapy框架搭建
+  -1 在Ubuntu中已经预装了lxml和OpenSSL,所以直接安装Scrapy即可
+     `sudo pin install Scrapy`,在Shell中通过`scrapy`命令来验证是否安装成功
+  -2 切换到相应的目录下,利用scrapy创建项目cnblogSpider
+     `scrapy startproject cnblogSpider`
