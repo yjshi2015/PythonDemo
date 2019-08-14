@@ -6,6 +6,33 @@ python学习备忘
   导致项目B在运行时提示`no module named XXX`,所以需要设置全局的SDK,即指定Python解释器的路径为全局路径,而非
   在各子项目中设置Pyhton解释器
 
+# 编码问题
+  -1. 英语采用ASSIC码  后来有了中文,扩充后成了GBK编码,后来各个国家加入,于是ISO组织成立了Unicode编码(包含utf-8和utf-16)
+  https://www.jianshu.com/p/67cdb878efcb
+  https://www.cnblogs.com/lowmanisbusy/p/9135917.html
+
+# 定时任务crontab
+  -1. 通过`crontab -e`建立定时任务
+      'Ctrl + O' 写入, 'Enter' 保存文件名, 'Ctrl + X' 退出
+  -2. 可采用如下命令查看定时任务的执行log,`tail -f /var/log/cron.log`
+  -3. 如果日志提示`mailed 80 bytes of output but got status 0X400b from MTA#02`,则通过如下设置,关闭发送邮件功能
+      `command >/dev/null 2>&1`
+  
+  如果无cron.log文件,按如下操作开启定时任务服务
+  +1.修改rsyslog文件：
+    `sudo vim /etc/rsyslog.d/50-default.conf` 
+　 　将  rsyslog  文件中的  #cron.*  前的  #  删掉；  
+  +2.重启rsyslog服务：
+  `service rsyslog restart` 
+  +3.重启cron服务：　　
+  `service cron restart`
+  
+  **注意事项:**
+  1.首先一定要确认crontab表达式是否正确,否则你的任务执行周期并不是你以为的那样
+    `1 * * * * command`是每小时的第1分钟执行,而不是每分钟执行!!!
+  2.加**print日志**会引入新的问题,但往往很容易忽略,因为并没有该之前的逻辑所以这类问题就很难发现.
+    可在终端单独执行`command`来确认是否有问题  
+  
 # mysql安装步骤
  - 1 sudo apt-get install mysql-server
  (过程中需要设置root用户的密码 \*\*\*mysql\*\*\*\*)
@@ -115,3 +142,4 @@ python学习备忘
      `sudo pin install Scrapy`,在Shell中通过`scrapy`命令来验证是否安装成功
   -2 切换到相应的目录下,利用scrapy创建项目cnblogSpider
      `scrapy startproject cnblogSpider`
+     

@@ -46,11 +46,14 @@ def _parse_ks_info(subscribeInfo):
         if int(xnsd) == 58 or int(sl) == 0:
             continue
         week = datetime.strptime(yyrq.encode('utf-8'), "%Y/%m/%d %H:%M:%S").weekday()
+        time_format = datetime.strptime(yyrq.encode('utf-8'), "%Y/%m/%d %H:%M:%S").strftime('%Y-%m-%d')
         if week == 5 or week == 6:
-            leftKSInfo = {'date': yyrq.encode('utf-8') + " 是周 " + (week + 1), 'message': "赶紧动手预约吧"}
+            # 中文前必须加u,采用Unicode编码
+            leftKSInfo = {'date': time_format.encode('utf-8') + u" 是周 " + str(week + 1) + (u' 上午' if(xnsd == '15') else u' 下午'), 'message': u"赶紧动手预约吧"}
             leftKSList.append(leftKSInfo)
-            print yyrq.encode('utf-8') + "---" + str(week)
-    return leftKSList
+            print time_format.encode('utf-8') + "---" + str(week)
+    # 对于Unicode编码的内容,要使用encoding="UTF-8", ensure_ascii=False来编码
+    return json.dumps(leftKSList, encoding="UTF-8", ensure_ascii=False)
 
 
 def _send_mail(body):
@@ -63,7 +66,7 @@ def _send_mail(body):
     # qq邮箱服务器地址
     smtp_server = 'smtp.qq.com'
     # 设置邮箱信息
-    msg = MIMEText(','.join(body), 'plain', 'utf-8')
+    msg = MIMEText(body, 'plain', 'utf-8')
     msg['From'] = from_addr
     msg['To'] = to_addr
     msg['Subject'] = Header('周末白天有课时啦', 'utf-8').encode()
@@ -80,10 +83,10 @@ if __name__ == '__main__':
     subscribeInfo = _query_ks_info()
     if subscribeInfo is not None:
         # 2.解析课时信息
+        print subscribeInfo
         leftKSList = _parse_ks_info(subscribeInfo)
         # 3.发送邮件通知
         if len(leftKSList) > 0:
-            print '有课时' + leftKSList
             _send_mail(leftKSList)
         else:
             print '没有课时啦'
