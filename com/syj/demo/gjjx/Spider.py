@@ -142,7 +142,6 @@ if __name__ == '__main__':
     subscribeInfo = _query_ks_info()
     if subscribeInfo is not None:
         # 2.解析课时信息
-        print subscribeInfo
         leftKSList = _parse_ks_info(subscribeInfo)
         if len(leftKSList) > 0:
             for item in leftKSList:
