@@ -92,10 +92,13 @@ def _parse_ks_info(subscribeInfo):
     for item in detail:
         yyrq = item.get('Yyrq')  # 预约日期
         xnsd = item.get('Xnsd')  # 校内时段, 812: "07:00--11:30", 15: "12:30--17:00", 58": "17:45--20:45"
-
+        booked = item.get('IsBpked') # 是否已经预约
         sl = item.get('SL')
-        # 排除 晚上的时段,或者剩余课时为0的
-        if int(xnsd) == 58 or int(sl) == 0:
+        # 排除 晚上的时段,或者剩余课时为0的,或者已经预约的
+        if int(xnsd) == 58 or int(sl) == 0 or (int(sl) > 0 and booked):
+            continue
+        # 截止到22号为止
+        if datetime.strptime(yyrq.encode('utf-8'), "%Y/%m/%d %H:%M:%S").strftime('%Y-%m-%d') > '2019-09-22':
             continue
         week = datetime.strptime(yyrq.encode('utf-8'), "%Y/%m/%d %H:%M:%S").weekday()
         time_format = datetime.strptime(yyrq.encode('utf-8'), "%Y/%m/%d %H:%M:%S").strftime('%Y年%m月%d日')
