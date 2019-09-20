@@ -142,4 +142,6 @@ python学习备忘
      `sudo pin install Scrapy`,在Shell中通过`scrapy`命令来验证是否安装成功
   -2 切换到相应的目录下,利用scrapy创建项目cnblogSpider
      `scrapy startproject cnblogSpider`
+  -3 启动爬虫,切换到scrapy项目的根目录,执行
+     `scrapy crawl cnblogSpider`
      
