@@ -125,3 +125,44 @@ class ZhihuComSpider(CrawlSpider):
         # 每个关注者/被关注者的id
         relations_id = [os.path.split(url)[-1] for url in relations_url]
         yield RelationItem(user_id=user_id, relation_type=relation_type, relations_id=relations_id)
+
+        users_num = response.xpath("//*[@class='zm-profile-section-name']/text()").extract_first()
+        users_num = int(re.search(r'\d+', users_num).group()) if users_num else len(relations_url)
+        # 提取要post出去的参数
+        data_init = response.xpath("//*[@class='zh-general-list clearfix']/@data-init").extract_first()
+        try:
+            nodename = json.loads(data_init)['nodename']
+            params = json.loads(data_init)['params']
+            post_url = 'https://www.zhihu.com/node/%s' % nodename
+            # 下面获取剩余的数据 post
+            if users_num > 20:
+                params['offset'] = 20
+                payload = {
+                    'method': 'next',
+                    'params': params
+                }
+                post_header = {
+                    'Host': 'www.zhihu.com',
+                    'Connection': 'keep-alive',
+                    'Accept': '*/*',
+                    'X-Requested-With': 'XMLHttpRequest',
+                    'User-Agent': 'Mozilla/5.0 (Windows NT 5.1; WOW64; rv:50.0) Gecko/20100101Firefox/50.0',
+                    'Content-Type': 'application/x-www-form-rulencoded;charset=UTF-8',
+                    'Accept-Encoding': 'gzip, deflate,br',
+                    'Accept-Language': 'zh-CN, zh; q=0.8, en-US;q=0.5,en; q=0.3',
+                    'X-Xsrftoken': self.xsrf
+                }
+                yield Request(
+                    url=post_url,
+                    method='POST',
+                    headers=post_header,
+                    body=urlencode(payload),
+                    cookies=self.cookies,
+                    meta={
+                        'user_id': user_id,
+                        'relation_type': relation_type,
+                        'offset': 20,
+                        'payload': payload,
+
+                    }
+                )
