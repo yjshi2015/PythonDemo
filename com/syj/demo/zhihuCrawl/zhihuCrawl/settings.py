@@ -62,11 +62,13 @@ ROBOTSTXT_OBEY = True
 #    'scrapy.extensions.telnet.TelnetConsole': None,
 #}
 
+MONG0_URI = 'mongodb://127.0.0.1:27017/'
+MONGO_DATABASE = 'zhihu'
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
-#ITEM_PIPELINES = {
-#    'zhihuCrawl.pipelines.ZhihucrawlPipeline': 300,
-#}
+ITEM_PIPELINES = {
+   'zhihuCrawl.pipelines.ZhihucrawlPipeline': 300,
+}
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://docs.scrapy.org/en/latest/topics/autothrottle.html
