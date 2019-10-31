@@ -6,6 +6,8 @@ from scrapy.spiders import CrawlSpider, Rule
 from scrapy.http import Request,FormRequest
 from scrapy.selector import Selector
 import os
+from urllib import urlencode
+import re
 
 from com.syj.demo.zhihuCrawl.zhihuCrawl.items import UserInfoItem,RelationItem
 
@@ -163,6 +165,63 @@ class ZhihuComSpider(CrawlSpider):
                         'relation_type': relation_type,
                         'offset': 20,
                         'payload': payload,
-
-                    }
+                        'users_num': users_num,
+                        'cookiejar': response.meta['cookiejar']
+                    },
+                    callback=self.parse_next_relation,
+                    errback=self.parse_err,
+                    priority=100
                 )
+        except Exception, e:
+            self.logger.warning('no second post --' + str(data_init) + '--' + str(e))
+
+        # 保留质疑:这个循环的作用,是查询N维的朋友关系
+        for url in relations_url:
+            yield Request(
+                response.urljoin(url=url),
+                meta={'cookiejar': response.meta['cookiejar']},
+                callback=self.parse_user_info,
+                errback=self.parse_err
+            )
+
+    def parse_next_relation(self, response):
+        '''
+        解析和我有关的人的剩余部分
+        :param response:
+        :return:
+        '''
+        user_id = response.request.meta['user_id']
+        relation_type = response.request.meta['relation_type']
+        payload = response.request.meta['payload']
+        relations_id = []
+
+        offset = response.request.meta['offset']
+        users_num = response.request.meta['users_num']
+        body = json.loads(response.body)
+        user_divs = body.get('msg', [])
+
+        for user_div in user_divs:
+            selector = Selector(text=user_div)
+            user_url = selector.xpath('//a[@class="zm-item-link-avatar"]/@href').extract_first()
+            relations_id.append(os.path.split(user_url)[-1])
+
+        # 发送捕获到的关系数据
+        yield RelationItem(user_id=user_id,
+                           relation_type=relation_type,
+                           relations_id=relations_id)
+
+        # 判断是否还有更多的数据
+        if offset + 20 < users_num:
+            payload['params']['offset'] = offset + 20
+            more_post = response.request.copy()
+            more_post = more_post.replace(
+                body = urlencode(payload),
+                meta = {
+                    'user_id': user_id,
+                    'relation_type': relation_type,
+                    'offset': offset + 20,
+                    'users_num': users_num,
+                    'cookiejar': response.meta['cookiejar']
+                }
+            )
+            yield more_post
