@@ -67,6 +67,16 @@ class ZhihuComSpider(CrawlSpider):
             return
 
     def parse_user_info(self, response):
+        # 对cookie序列化存储到session.txt中
+        if not os.path.exists('session.txt'):
+            with open('session.txt', 'wb') as f:
+                import pickle
+                cookies = response.request.headers['cookie']
+                cookieDict = {}
+                for cookie in cookies.split(';'):
+                    key, value = cookie[0:cookie.find('=')], cookie[cookie.find('=')+1:]
+                    cookieDict[key] = value
+                pickle.dump(cookieDict, f)
         # 解析用户信息
         user_id = os.path.split(response.url)[-1]
         user_image_url = response.xpath("//img[@class='AvatarAvatar--1']/@src").extract_first()
