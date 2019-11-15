@@ -7,3 +7,4 @@
 5. 研究返回体:在命令框中`scrapy shell "https://music.163.com/discover"`查看页面请求情况
    然后将返回体保存到本地,并且用浏览器打开`view(response)`
    注意此种方式并不会触发对返回体中的异步请求,比如图片这些是无法加载出来的,导致通过浏览器看不到具体内容
+6. 运行爬虫,验证返回体,在项目的根目录下:`scrapy crawl wangyiSpider`   

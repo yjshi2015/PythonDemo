@@ -31,7 +31,8 @@ class WangyispiderSpider(CrawlSpider):
 
     def parse_home_page(self, response):
         print '----------开始解析discover页面'
-        tops = response.xpath(".//*[@class='top']")
+        # tops = response.xpath("//dt[@class='top']/div[2]")
+        tops = response.xpath(".//*[@id='top-flag']")
         for top in tops:
             print '----------一下为top内容'
             print top

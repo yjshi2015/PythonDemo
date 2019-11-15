@@ -16,7 +16,10 @@ NEWSPIDER_MODULE = 'wangyiMusic.spiders'
 
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
-#USER_AGENT = 'wangyiMusic (+http://www.yourdomain.com)'
+USER_AGENTS = ['Mozilla/5.0 (Windows NT 6.1; WOW64; rv:50.0) Gecko/20100101 Firefox/50.0',
+               'Mozilla/4.0 (compatible; MSIE 5.5; Windows NT)',
+               'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.93 Safari/537.36',
+               ]
 
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = True
@@ -46,15 +49,17 @@ ROBOTSTXT_OBEY = True
 
 # Enable or disable spider middlewares
 # See https://docs.scrapy.org/en/latest/topics/spider-middleware.html
-#SPIDER_MIDDLEWARES = {
+# SPIDER_MIDDLEWARES = {
 #    'wangyiMusic.middlewares.WangyimusicSpiderMiddleware': 543,
-#}
+# }
 
 # Enable or disable downloader middlewares
 # See https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
-#DOWNLOADER_MIDDLEWARES = {
-#    'wangyiMusic.middlewares.WangyimusicDownloaderMiddleware': 543,
-#}
+DOWNLOADER_MIDDLEWARES = {
+   'wangyiMusic.middlewares.WangyimusicDownloaderMiddleware': 543,
+   'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware': None,
+
+}
 
 # Enable or disable extensions
 # See https://docs.scrapy.org/en/latest/topics/extensions.html
