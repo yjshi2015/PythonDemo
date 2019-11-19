@@ -8,6 +8,7 @@ from scrapy.http import Request, FormRequest
 class WangyispiderSpider(CrawlSpider):
     name = 'wangyiSpider'
     allowed_domains = ['163.com']
+    web_domain = 'https://music.163.com'
     start_urls = ['https://music.163.com/discover']
 
     rules = (
@@ -31,9 +32,15 @@ class WangyispiderSpider(CrawlSpider):
 
     def parse_home_page(self, response):
         print '----------开始解析discover页面'
-        # tops = response.xpath("//dt[@class='top']/div[2]")
-        tops = response.xpath(".//*[@id='top-flag']")
+        tops = response.xpath("//dt[@class='top']")
+        # tops = response.xpath(".//*[@id='top-flag']")
         for top in tops:
             print '----------一下为top内容'
-            print top
+            title = top.xpath(".//*[@class='tit']/a/@title").extract()[0]
+            href = self.web_domain + top.xpath(".//*[@class='tit']/a/@href").extract()[0]
+            print title + " : " + href
+            # 构造request并提交给Scrapy引擎
+            yield Request(url=href, callback=self.parse_top_list)
 
+    def parse_top_list(self, response):
+        print '----------开始解析top list页面'
