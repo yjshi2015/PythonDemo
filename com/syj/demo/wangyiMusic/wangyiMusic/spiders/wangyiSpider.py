@@ -44,3 +44,13 @@ class WangyispiderSpider(CrawlSpider):
 
     def parse_top_list(self, response):
         print '----------开始解析top list页面'
+        html = response.text
+        print html
+        # songs = response.xpath("//tbody")
+        # print '----------size:' + str(len(songs))
+        # for song in songs:
+        #     song_item = song.xpath(".//*[@class='ttc']/span/a")
+        #     song_link = song_item.xpath(".//@href").extract()
+        #     song_name = song_item.xpath(".//b/@title").extract()
+        #     print song_link
+        #     print song_name
