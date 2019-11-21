@@ -3,7 +3,7 @@ import scrapy
 from scrapy.linkextractors import LinkExtractor
 from scrapy.spiders import CrawlSpider, Rule
 from scrapy.http import Request, FormRequest
-
+import string
 
 class WangyispiderSpider(CrawlSpider):
     name = 'wangyiSpider'
@@ -39,13 +39,16 @@ class WangyispiderSpider(CrawlSpider):
             title = top.xpath(".//*[@class='tit']/a/@title").extract()[0]
             href = self.web_domain + top.xpath(".//*[@class='tit']/a/@href").extract()[0]
             print title + " : " + href
-            # 构造request并提交给Scrapy引擎
-            yield Request(url=href, callback=self.parse_top_list)
+            if string.find(href, '2884035') != -1:
+                # 构造request并提交给Scrapy引擎
+                yield Request(url=href, callback=self.parse_top_list)
 
     def parse_top_list(self, response):
         print '----------开始解析top list页面'
-        html = response.text
-        print html
+        with open('wangyi.txt', 'wb') as f:
+            import pickle
+            html = response.text
+            pickle.dump(html, f)
         # songs = response.xpath("//tbody")
         # print '----------size:' + str(len(songs))
         # for song in songs:
