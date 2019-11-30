@@ -23,7 +23,10 @@ def _query_ks_info():
             'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:50.0) Gecko/20100101 Firefox/50.0'}
         response = requests.get('https://music.163.com/discover/toplist?id=2884035', headers=headers)
         result = response.text
-        print result
+        with open('wangyiyun_utf8.txt', 'wb') as f:
+            import pickle
+            html = response.text.encode('utf-8').decode('unicode_escape')
+            pickle.dump(html, f)
         return result
     except Exception, e:
         print '获取课时列表信息失败'
