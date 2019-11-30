@@ -8,7 +8,9 @@
    然后将返回体保存到本地,并且用浏览器打开`view(response)`
    注意此种方式并不会触发对返回体中的异步请求,比如图片这些是无法加载出来的,导致通过浏览器看不到具体内容
 6. 运行爬虫,验证返回体,在项目的根目录下:`scrapy crawl wangyiSpider`   
-
+7. 网易评论API 加密过程:https://www.jianshu.com/p/143f1f726ba7
+   https://www.jianshu.com/p/edbca827317a?open_source=weibo_search
+   
 
 注意
 1. 在写Xpath脚本时,在浏览器F12模式下看到的页面结构只能作为参考,并不代表真正URL(https://music.163.com/discover/toplist?id=2884035)
