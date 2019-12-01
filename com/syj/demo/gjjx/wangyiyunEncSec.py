@@ -9,6 +9,7 @@ from email.header import Header
 from email.mime.text import MIMEText
 import smtplib
 import sys
+import re
 
 import com.syj.demo.wangyiMusic.wangyiMusic.spiders.encSecParams as enc
 
@@ -53,5 +54,10 @@ def _query_ks_info():
 
 if __name__ == '__main__':
     # 1.查询课时信息
-    subscribeInfo = _query_ks_info()
-    print 'end'
+    # subscribeInfo = _query_ks_info()
+    url = 'http://music.163.com/songId=123'
+    pattern = re.compile(r'=\d+')
+    result = re.search(pattern, url)
+    if result:
+        song_id = result.group()[1:]
+        print song_id
