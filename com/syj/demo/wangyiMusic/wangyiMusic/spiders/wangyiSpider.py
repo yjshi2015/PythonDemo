@@ -3,10 +3,9 @@ import scrapy
 from scrapy.linkextractors import LinkExtractor
 from scrapy.spiders import CrawlSpider, Rule
 from scrapy.http import Request, FormRequest
-import string
 import encSecParams
 import re
-
+import json
 
 class WangyispiderSpider(CrawlSpider):
     name = 'wangyiSpider'
@@ -74,7 +73,28 @@ class WangyispiderSpider(CrawlSpider):
                           callback=self.parse_song_comment)
 
     def parse_song_comment(self, response):
-        print response.text
+        comment_item = {'song_id': response.meta['song_id'],
+                        'song_name': response.meta['song_name'],
+                        'song_link': response.meta['song_link']}
+
+        comments_result = response.text
+        if comments_result:
+            all_comments = json.loads(comments_result)
+            hot_comments = all_comments.get('hotComments')
+            for hot in hot_comments:
+                user_id = hot.get('user').get('userId')
+                nick_name = hot.get('user').get('nickname')
+                comment_id = hot.get('commentId')
+                content = hot.get('content')
+                dian_zan = hot.get('likedCount')
+                time = hot.get('time')
+                comment_item['user_id'] = user_id
+                comment_item['nick_name'] = nick_name
+                comment_item['comment_id'] = comment_id
+                comment_item['content'] = content
+                comment_item['dian_zan'] = dian_zan
+                comment_item['time'] = time
+                print comment_item
         # with open('my_girl.txt', 'wb') as f:
         #     import pickle
         #     html = response.text.encode('utf-8').decode('unicode_escape')
