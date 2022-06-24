@@ -26,6 +26,8 @@ options = ChromeOptions()
 options.add_experimental_option('excludeSwitches', ['enable-automation'])
 # 隐藏自动化扩展信息
 options.add_experimental_option('useAutomationExtension', False)
+# 无头模式，提升爬取性能
+options.add_argument('--headless')
 browser = webdriver.Chrome(options=options)
 # cdp即chrome devtools protocol,chrome开发工具协议，
 # 利用它可以实现在每个页面钢架在的时候就执行JavaScript语句，进而反屏蔽。

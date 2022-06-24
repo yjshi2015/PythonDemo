@@ -51,3 +51,6 @@
 - 6.反屏蔽
   - 有些网站增加了对selenium的识别，防止一些爬虫的恶意爬取。检测的原理是检查当前浏览器窗口下的window.navigator对象中是否包含webdriver属性。因为在正常使用浏览器时，这个属性值undefined, 一旦使用了selenium/pypeetor/playwright等，就会给window.navigator对象设置webdriver属性。很多网站通过Javascript语句判断是否存在webdriver属性，如果有就屏蔽。
   - @see com/syj/cuiqingcai/chapter7/selenium/Selenium.py
+
+# pyppeteer
+[官方文档](https://pyppeteer.github.io/pyppeteer/reference.html)
