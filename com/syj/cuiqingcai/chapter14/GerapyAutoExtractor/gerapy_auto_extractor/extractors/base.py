@@ -1,11 +1,10 @@
 from lxml.html import fromstring
 from loguru import logger
 from lxml.html import etree
-from ..schemas.element import Element
+from com.syj.cuiqingcai.chapter14.GerapyAutoExtractor.gerapy_auto_extractor.schemas.element import Element
 
 
 class BaseExtractor(object):
-
     kwargs = None
 
     def to_string(self, element: Element, limit: int = None):
@@ -14,11 +13,9 @@ class BaseExtractor(object):
             return result[: limit]
         return result
 
-
     def process(self, element: Element):
         logger.error('you must implement process method in your extractor')
         raise NotImplementedError
-
 
     def extract(self, html, **kwargs):
         """

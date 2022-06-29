@@ -20,7 +20,7 @@ def remove_element(element: Element):
         p.remove(element)
 
 
-def remove_children(element: Element, xpaths):
+def remove_children(element: Element, *xpaths):
     if element is None:
         return
     if not xpaths:
@@ -100,8 +100,13 @@ def a_descendants(element: Element):
 
 
 def a_descendants_group(element: Element):
+    '''
+    a节点簇
+    :param element:
+    :return:
+    '''
     result = defaultdict(list)
-    # todo syj 啥意思
+    # todo syj 啥意思，这里是1组数据，还是多组数据
     for linked_descendant in element.a_descendants:
         p = linked_descendant.path_raw
         result[p].append(linked_descendant)

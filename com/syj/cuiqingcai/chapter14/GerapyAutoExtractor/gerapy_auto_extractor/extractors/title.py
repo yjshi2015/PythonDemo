@@ -39,9 +39,12 @@ class TitleExtractor(BaseExtractor):
         if title_extracted_by_metas:
             return title_extracted_by_metas
 
+        # 相似度得分算法，获取跟title最相似的hs
         title_extracted_by_hs = sorted(title_extracted_by_hs,
                                        key=lambda x: similarity2(x, title_extracted_by_title),
                                        reverse=True)
+
+        # 提取相同字符串算法，获取跟title相同的标题内容
         if title_extracted_by_hs:
             return lcs_of_2(title_extracted_by_hs[0], title_extracted_by_title)
 
