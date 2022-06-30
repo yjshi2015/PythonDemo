@@ -50,11 +50,11 @@ def preprocess4list_extractor(element: Element):
     :return:
     """
     # remove tag and its content
-    etree.strip_elements(element, *CONTENT_EXTRACTOR_USELESS_TAGS)
+    etree.strip_elements(element, *LIST_EXTRACTOR_USELESS_TAGS)
     # only move tag pair
-    etree.strip_tags(element, *CONTENT_EXTRACTOR_STRIP_TAGS)
+    etree.strip_tags(element, *LIST_EXTRACTOR_STRIP_TAGS)
 
-    remove_children(element, CONTENT_EXTRACTOR_NOISE_XPATHS)
+    remove_children(element, LIST_EXTRACTOR_NOISE_XPATHS)
 
     for child in children(element):
 

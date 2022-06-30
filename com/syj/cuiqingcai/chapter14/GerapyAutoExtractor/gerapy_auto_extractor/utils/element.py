@@ -93,6 +93,7 @@ def a_descendants(element: Element):
     if element is None:
         return []
     descendants = []
+    # todo syj 这种方式包含了子节点及其本身？
     for descendant in element.xpath('.//a'):
         descendant.__class__ = Element
         descendants.append(descendant)
@@ -100,14 +101,37 @@ def a_descendants(element: Element):
 
 
 def a_descendants_group(element: Element):
-    '''
-    a节点簇
+    ''' 注意：syj
+    <html>
+        <body>
+            <div>
+                <ul>
+                    <li><a>node1</a></li>
+                    <li><a>node2</a></li>
+                    <li><a>node3</a></li>
+                    <li><a>node4</a></li>
+                </ul>
+            </div>
+        </body>
+    </html>
+    针对以上html，获取各节点的子孙a节点，及a节点的绝对路径，结果如下：
+    节点html子孙a节点 = [a_node1, a_node2, a_node3, a_node4], a_path_raw = html/body/div/ul
+    节点body子孙a节点 = [a_node1, a_node2, a_node3, a_node4], a_path_raw = html/body/div/ul
+    节点div 子孙a节点 = [a_node1, a_node2, a_node3, a_node4], a_path_raw = html/body/div/ul
+    节点ul  子孙a节点 = [a_node1, a_node2, a_node3, a_node4], a_path_raw = html/body/div/ul
+    节点li1 子孙a节点 = [], path_raw = a_html/body/div/ul/li
+        …………
+    节点li4 子孙a节点 = [], path_raw = a_html/body/div/ul/li
+
+    会发现，不管从哪个节点的角度去查看a节点，a节点的绝对路径都是固定的，因此以a节点的路径作为dict的key，就能起到聚合作用
     :param element:
     :return:
     '''
     result = defaultdict(list)
-    # todo syj 啥意思，这里是1组数据，还是多组数据
     for linked_descendant in element.a_descendants:
+        # 注意
+        # ①这里是以a节点的路径作为key，而非当前element的路径做key，因此能起到聚合作用
+        # ②这里没有使用alias或者path，就是为了让多个分组（在同一个层级）再聚合
         p = linked_descendant.path_raw
         result[p].append(linked_descendant)
     return result
