@@ -6,8 +6,8 @@ from types import ModuleType
 from collections import defaultdict
 from loguru import logger
 from lxml.html import fromstring, HtmlElement
-from ..schemas.element import Element
-from ..utils.similarity import similarity
+from com.syj.cuiqingcai.chapter14.GerapyAutoExtractor.gerapy_auto_extractor.schemas.element import Element
+from com.syj.cuiqingcai.chapter14.GerapyAutoExtractor.gerapy_auto_extractor.utils.similarity import similarity
 
 PUNCTUATION = set('''！，。？、；：“”‘’《》%（）<>{}「」【】*～`,.?:;'"!%()''')
 
@@ -176,8 +176,63 @@ def text(element: Element):
     if element is None:
         return 0
     text = ''.join(element.xpath('.//text()'))
-    text = re.sub(r'\s*', '', text, re.S)
+    text = re.sub(r'\s*', '', text, flags=re.S)
     return text
+
+
+def text_len(element: Element, xpath):
+    result = 0
+    if element is None:
+        return 0
+    texts = element.xpath(xpath)
+    word_pattern = re.compile(r'[A-Za-z0-9_-]+\b')
+    for text in texts:
+        if text is None: continue
+        logger.info('**********text:' + text)
+        # 1.判断语言类型
+        english_words = re.findall(word_pattern, text)
+        english_words_len = len(''.join(english_words).strip())
+        text_len = len(text)
+        words_rate = english_words_len / text_len
+        # 2.按语言类型计算长度
+        text = re.sub(r'\s*', '', text, flags=re.S)
+        if words_rate > 0.5:
+            real_text_len = len(text) - english_words_len + len(english_words)
+        else:
+            real_text_len = len(text)
+        # 3.长度累加
+        logger.info('**********real_text_len:' + str(real_text_len))
+        result += real_text_len
+    return result
+
+
+if __name__ == '__main__':
+    # text = '他说 are you ok ic-9?'
+    # text = '他说哈哈~'
+    text = 'Notice: The content above (including the videos, pictures and audios if any) is uploaded and posted by the user of Dafeng Hao, which is a social media platform and merely provides information storage space services.”'
+    # 1.判断语言类型
+    pattern = re.compile(r'[A-Za-z0-9_-]+\b')
+    english_words = re.findall(pattern, text)
+    english_words_len = len(''.join(english_words).strip())
+    english_words_times = len(english_words)
+    text_len = len(text)
+    rate = english_words_len / text_len
+    print(text_len)
+    print(english_words)
+    print(english_words_len)
+    print(english_words_times)
+    print(rate)
+
+    # 2.按语言类型计算长度
+    text = re.sub(r'\s*', '', text, flags=re.S)
+    print(text)
+    print(len(text))
+    if rate > 0.5:
+        real_text_len = len(text) - english_words_len + len(english_words)
+    else:
+        real_text_len = len(text)
+
+    print(real_text_len)
 
 
 def number_of_char(element: Element):
@@ -188,7 +243,8 @@ def number_of_char(element: Element):
     """
     if element is None:
         return 0
-    return len(text(element))
+    # return len(text(element))
+    return text_len(element, './/text()')
 
 
 def number_of_a_char(element: Element):
@@ -200,8 +256,9 @@ def number_of_a_char(element: Element):
     if element is None:
         return 0
     text = ''.join(element.xpath('.//a//text()'))
-    text = re.sub(r'\s*', '', text, re.S)
-    return len(text)
+    text = re.sub(r'\s*', '', text, flags=re.S)
+    # return len(text)
+    return text_len(element, './/a//text()')
 
 
 def number_of_a_char_log10(element: Element):
@@ -361,7 +418,7 @@ def alias(element: Element):
         return tag
     attribs = [tag]
     for k, v in element.attrib.items():
-        k, v = re.sub(r'\s*', '', k), re.sub(r'\s*', '', v)
+        k, v = re.sub(r'\s*', '', k, flags=re.S), re.sub(r'\s*', '', v, flags=re.S)
         attribs.append(f'[{k}="{v}"]' if v else f'[{k}]')
     result = ''.join(attribs)
     nth = len(list(element.itersiblings(proceding=True))) + 1

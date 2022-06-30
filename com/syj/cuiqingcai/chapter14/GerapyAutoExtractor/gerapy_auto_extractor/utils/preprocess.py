@@ -24,7 +24,7 @@ def preprocess4content_extract(element: HtmlElement):
     # 移除评论/广告相关的节点，根据xpath移除
     remove_children(element, *CONTENT_EXTRACTOR_NOISE_XPATHS)
 
-    # Todo syj 这是几级子节点？
+    # html的直接子节点，只有2个元素，head/body
     for child in children(element):
         # 合并span、strong标签下的文本到p标签中
         if child.tag.lower() == 'p':
