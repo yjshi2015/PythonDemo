@@ -312,18 +312,23 @@ class Element(HtmlElement):
             return self._a_descendants_group_text_length
         result = {}
         from com.syj.cuiqingcai.chapter14.GerapyAutoExtractor.gerapy_auto_extractor.utils.element import text
+        if not self._a_descendants_group:
+            return result
         for path, elements in self._a_descendants_group.items():
             lengths = []
             for element in elements:
                 lengths.append(len(text(element)))
             mean_length = mean(lengths) if len(lengths) else 0
             result[path] = mean_length
-        return result
+        self._a_descendants_group_text_length = result
+        return self._a_descendants_group_text_length
 
     @property
     def a_descendants_group_text_min_length(self):
         if self._a_descendants_group_text_min_length is not None:
             return self._a_descendants_group_text_min_length
+        if not self._a_descendants_group_text_length:
+            return 0
         values = self._a_descendants_group_text_length.values()
         self._a_descendants_group_text_min_length = min(values) if values else 0
         return self._a_descendants_group_text_min_length

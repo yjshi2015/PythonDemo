@@ -54,11 +54,11 @@ def preprocess4list_extractor(element: Element):
     # only move tag pair
     etree.strip_tags(element, *LIST_EXTRACTOR_STRIP_TAGS)
 
-    remove_children(element, LIST_EXTRACTOR_NOISE_XPATHS)
+    remove_children(element, *LIST_EXTRACTOR_NOISE_XPATHS)
 
     for child in children(element):
 
-        # merge text in span or strong to parent p tag
+        # merge text in span or strong to parent p  tag
         if child.tag.lower() == 'p':
             etree.strip_tags(child, 'span')
             etree.strip_tags(child, 'strong')

@@ -113,7 +113,7 @@ class ListExtractor(BaseExtractor):
                     result.append(sibling_selector)
 
         cluster = sorted(cluster, key=lambda x: x.nth)
-        logger.log('inspect', f'cluster after extend {cluster}')
+        logger.info(f'cluster after extend {cluster}')
         return cluster
 
     def _best_cluster(self, clusters):
@@ -124,6 +124,7 @@ class ListExtractor(BaseExtractor):
         '''
         if not clusters:
             logger.error('there is no clusters, just return empty []')
+            return []
         if len(clusters) == 1:
             logger.info('there is only one cluster, just return first cluster')
             # 按分组号返回
@@ -131,7 +132,7 @@ class ListExtractor(BaseExtractor):
         clusters_score = defaultdict(dict)
         clusters_score_max = -1
         clusters_score_max_group = 0
-        for cluster_id, cluster in clusters.item():
+        for cluster_id, cluster in clusters.items():
             # 计算当前组的得分
             clusters_score[cluster_id] = self._evaluate_cluster(cluster)
             # 获取最大得分
@@ -186,13 +187,13 @@ class ListExtractor(BaseExtractor):
         preprocess4list_extractor(element)
 
         clusters = self._build_clusters(element)
-        logger.log('inspect', f'after build clusters {clusters}')
+        logger.info(f'after build clusters {clusters}')
 
         best_cluster = self._best_cluster(clusters)
-        logger.log('inspect', f'best cluster {best_cluster}')
+        logger.info(f'best cluster {best_cluster}')
 
         extended_cluster = self._extend_cluster(best_cluster)
-        logger.log('inspect', f'extended cluster {extended_cluster}')
+        logger.info( f'extended cluster {extended_cluster}')
 
         return self._extract_cluster(best_cluster)
 
@@ -202,3 +203,8 @@ list_extractor = ListExtractor()
 
 def extract_list(html, **kwargs):
     return list_extractor.extract(html, **kwargs)
+
+
+if __name__ == '__main__':
+    with open('../list.html', encoding='utf-8') as p:
+        extract_list(p.read())
