@@ -49,29 +49,23 @@ class ListExtractor(BaseExtractor):
         descendants = descendants_of_body(element)
 
         for descendant in descendants:
-            # todo syj
-            #  此条件保留了子节点（不能再展开的子节点），排除了父/祖父/祖祖父这样的节点
+            '''
+                这是最核心的方法：分组！
+                条件：①兄弟节点数量>4;②子节点的文本长度8~44左右;③路径相似度符合预期
+                结果：以ul节点的路径为key,以li节点为value，并且value是数组形式[]
+            '''
             if descendant.number_of_siblings < self.min_number:
-                logger.info('兄弟节点数量不足->' + str(descendant.number_of_siblings) + ", path:" + descendant.path + ', alias:' + descendant.alias)
                 continue
-            # 此条件保留了父/祖父/祖祖父节点，与第一个条件冲突
             if descendant.a_descendants_group_text_min_length > self.max_length:
-                logger.info('字数超过44->' + str(descendant.a_descendants_group_text_min_length) + ", path:" + descendant.path + ', alias:' + descendant.alias)
                 continue
             if descendant.a_descendants_group_text_max_length < self.min_length:
-                logger.info('字数小于8->' + str(descendant.a_descendants_group_text_max_length) + ", path:" + descendant.path + ', alias:' + descendant.alias)
                 continue
-            # 此条件针对子节点，排除了
             if descendant.similarity_with_siblings < self.similarity_threshold:
-                logger.info('兄弟们不像->' + str(descendant.similarity_with_siblings) + ", path:" + descendant.path + ', alias:' + descendant.alias)
                 continue
             logger.info("满足条件的节点->, path:" + descendant.path + ', alias:' + descendant.alias)
             logger.info('子孙节点数量：' + str(descendant.number_of_siblings) + ', 子孙a节点组的最大文本长度：' + str(descendant.a_descendants_group_text_max_length))
             descendants_tree[descendant.parent_selector].append(descendant)
         descendants_tree = dict(descendants_tree)
-
-        # html_str = etree.tostring(element).decode('utf-8')
-        # logger.info("-----------" + html_str)
 
         # 默认排序，即路径最短最靠前
         selectors = sorted(list(descendants_tree.keys()))
@@ -125,7 +119,7 @@ class ListExtractor(BaseExtractor):
                     result.append(sibling_selector)
 
         cluster = sorted(cluster, key=lambda x: x.nth)
-        logger.info(f'cluster after extend {cluster}')
+        # logger.info(f'cluster after extend {cluster}')
         return cluster
 
     def _best_cluster(self, clusters):
@@ -155,6 +149,11 @@ class ListExtractor(BaseExtractor):
         return bset_cluster
 
     def _extract_cluster(self, cluster):
+        '''
+        选取最优组的元素之后，获取每个元素下“最优节点”，即最优的a节点路径：best_path
+        :param cluster:
+        :return:
+        '''
         if not cluster:
             return None
         probabilities_of_title = defaultdict(list)
@@ -199,13 +198,13 @@ class ListExtractor(BaseExtractor):
         preprocess4list_extractor(element)
 
         clusters = self._build_clusters(element)
-        logger.info(f'after build clusters {clusters}')
+        # logger.info(f'after build clusters {clusters}')
 
         best_cluster = self._best_cluster(clusters)
-        logger.info(f'best cluster {best_cluster}')
+        # logger.info(f'best cluster {best_cluster}')
 
         extended_cluster = self._extend_cluster(best_cluster)
-        logger.info( f'extended cluster {extended_cluster}')
+        # logger.info( f'extended cluster {extended_cluster}')
 
         return self._extract_cluster(best_cluster)
 
@@ -218,6 +217,6 @@ def extract_list(html, **kwargs):
 
 
 if __name__ == '__main__':
-    with open('../list.html', encoding='utf-8') as p:
+    with open('../sample/list/loaded_new_163_list.html', encoding='utf-8') as p:
         result = extract_list(p.read())
-        print(json.dumps(result, indent=2, ensure_ascii=False, default=str))
+        # print(json.dumps(result, indent=2, ensure_ascii=False, default=str))
