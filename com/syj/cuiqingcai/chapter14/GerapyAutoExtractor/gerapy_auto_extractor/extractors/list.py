@@ -45,21 +45,31 @@ class ListExtractor(BaseExtractor):
     def _build_clusters(self, element):
         descendants_tree = defaultdict(list)
         descendants = descendants_of_body(element)
+
         for descendant in descendants:
             # todo syj
             #  此条件保留了子节点（不能再展开的子节点），排除了父/祖父/祖祖父这样的节点
             if descendant.number_of_siblings < self.min_number:
+                logger.info('兄弟节点数量不足->' + str(descendant.number_of_siblings) + ", path:" + descendant.path + ', alias:' + descendant.alias)
                 continue
             # 此条件保留了父/祖父/祖祖父节点，与第一个条件冲突
             if descendant.a_descendants_group_text_min_length > self.max_length:
+                logger.info('字数超过44->' + str(descendant.a_descendants_group_text_min_length) + ", path:" + descendant.path + ', alias:' + descendant.alias)
                 continue
             if descendant.a_descendants_group_text_max_length < self.min_length:
+                logger.info('字数小于8->' + str(descendant.a_descendants_group_text_max_length) + ", path:" + descendant.path + ', alias:' + descendant.alias)
                 continue
             # 此条件针对子节点，排除了
             if descendant.similarity_with_siblings < self.similarity_threshold:
+                logger.info('兄弟们不像->' + str(descendant.similarity_with_siblings) + ", path:" + descendant.path + ', alias:' + descendant.alias)
                 continue
+            logger.info("满足条件的节点->, path:" + descendant.path + ', alias:' + descendant.alias)
+            logger.info('子孙节点数量：' + str(descendant.number_of_siblings) + ', 子孙a节点组的最大文本长度：' + str(descendant.a_descendants_group_text_max_length))
             descendants_tree[descendant.parent_selector].append(descendant)
         descendants_tree = dict(descendants_tree)
+
+        # html_str = etree.tostring(element).decode('utf-8')
+        # logger.info("-----------" + html_str)
 
         # 默认排序，即路径最短最靠前
         selectors = sorted(list(descendants_tree.keys()))

@@ -5,7 +5,7 @@ from os.path import exists
 from types import ModuleType
 from collections import defaultdict
 from loguru import logger
-from lxml.html import fromstring, HtmlElement
+from lxml.html import fromstring, HtmlElement, HtmlComment
 from com.syj.cuiqingcai.chapter14.GerapyAutoExtractor.gerapy_auto_extractor.schemas.element import Element
 from com.syj.cuiqingcai.chapter14.GerapyAutoExtractor.gerapy_auto_extractor.utils.similarity import similarity
 
@@ -92,6 +92,8 @@ def path(element: Element):
 def a_descendants(element: Element):
     if element is None:
         return []
+    if element.xpath('./@class') == 'ne_areane_index_area':
+        logger.info('逮到了……')
     descendants = []
     # todo syj 这种方式包含了子节点及其本身？
     for descendant in element.xpath('.//a'):
@@ -169,6 +171,10 @@ def descendants(element: Element, including=False):
     if including:
         yield element
     for descendant in element.iterdescendants():
+        # 移除注释的节点
+        if isinstance(descendant, HtmlComment):
+            remove_element(descendant)
+            continue
         if isinstance(descendant, HtmlElement):
             descendant.__class__ = Element
             yield descendant
@@ -445,6 +451,6 @@ def alias(element: Element):
         k, v = re.sub(r'\s*', '', k, flags=re.S), re.sub(r'\s*', '', v, flags=re.S)
         attribs.append(f'[{k}="{v}"]' if v else f'[{k}]')
     result = ''.join(attribs)
-    nth = len(list(element.itersiblings(proceding=True))) + 1
+    nth = len(list(element.itersiblings(preceding=True))) + 1
     result += f':nth-child({nth})'
     return result
