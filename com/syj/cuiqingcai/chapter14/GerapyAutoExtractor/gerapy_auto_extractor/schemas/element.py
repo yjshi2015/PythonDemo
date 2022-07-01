@@ -26,7 +26,7 @@ class Element(HtmlElement):
     _density_of_punctuation: int = None
     _density_of_text: float = None
     _density_score: float = None
-    _simimarity_of_siblings: float = None
+    _similarity_with_siblings: float = None
     _a_descendants: list = None
     _a_descendants_group: dict = None
     _a_descendants_group_text_length: dict = None

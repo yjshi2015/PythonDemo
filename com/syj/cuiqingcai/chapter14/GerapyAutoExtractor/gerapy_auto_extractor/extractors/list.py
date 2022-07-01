@@ -10,6 +10,8 @@ from com.syj.cuiqingcai.chapter14.GerapyAutoExtractor.gerapy_auto_extractor.util
 from com.syj.cuiqingcai.chapter14.GerapyAutoExtractor.gerapy_auto_extractor.extractors.base import BaseExtractor
 from com.syj.cuiqingcai.chapter14.GerapyAutoExtractor.gerapy_auto_extractor.utils.element import descendants_of_body
 from com.syj.cuiqingcai.chapter14.GerapyAutoExtractor.gerapy_auto_extractor.schemas.element import Element
+import json
+
 
 LIST_MIN_NUMBER = 5
 LIST_MIN_LENGTH = 8
@@ -113,7 +115,7 @@ class ListExtractor(BaseExtractor):
             path_raw = element.path_raw
             siblings = list(element.siblings)
             for sibling in siblings:
-                if not isinstance(sibling, element): continue
+                if not isinstance(sibling, Element): continue
                 sibling_selector = sibling.selector
                 sibling_path_raw = sibling.path_raw
                 if sibling_path_raw != path_raw: continue
@@ -170,7 +172,7 @@ class ListExtractor(BaseExtractor):
             return None
         # todo syj 啥意思
         best_path = max(probabilities_of_title_avg.items(), key=operator.itemgetter(1))[0]
-        logger.log('inspect', f'best tag path {best_path}')
+        logger.info('best tag path : ' + best_path)
 
         result = []
         for element in cluster:
@@ -217,4 +219,5 @@ def extract_list(html, **kwargs):
 
 if __name__ == '__main__':
     with open('../list.html', encoding='utf-8') as p:
-        extract_list(p.read())
+        result = extract_list(p.read())
+        print(json.dumps(result, indent=2, ensure_ascii=False, default=str))
