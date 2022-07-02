@@ -1,3 +1,4 @@
+from aiohttp import ClientPayloadError
 from loguru import logger
 import aiohttp
 import asyncio
@@ -8,38 +9,53 @@ base_url = 'https://api.hunliji.com/hms/eInvitation/appApi/card/v2/preview?cardI
 home_url = 'https://www.hunliji.com/p/frontend/creation-platform/app-preview-wedding-card/dist/index.html?cardId='
 
 semaphore = asyncio.Semaphore(5)
+error_num = 0
 
 
-async def scraw(carId_base64):
-    async with semaphore:
-        async with aiohttp.ClientSession() as session:
-            async with session.get(base_url + carId_base64) as response:
-                return await response.text()
+async def scraw(card_id_base64):
+    try:
+        async with semaphore:
+            async with aiohttp.ClientSession() as session:
+                async with session.get(base_url + card_id_base64) as response:
+                    return await response.text()
+    except ClientPayloadError as e:
+        logger.error('scraw card_id_base64 {} occur error', card_id_base64, e)
 
 
 async def get_data():
     # begin_id = 68809123
     tasks = []
-    for card_id in range(60400001, 60401000):
+    card_id , target = 60400001, 60500002
+    while card_id < target:
         # for card_id in range(60400014, 60400016):
         suffix = 'fire_cloud'
         card_id_str = str(card_id) + suffix
         card_id_base64 = base64.b64encode(card_id_str.encode()).decode()
-        logger.info('card_id: {}, card_id_base64: {}', card_id_str, card_id_base64)
+        # logger.info('card_id: {}, card_id_base64: {}', card_id_str, card_id_base64)
 
         task = asyncio.ensure_future(scraw(card_id_base64))
         tasks.append(task)
-    results = await asyncio.gather(*tasks)
-    save_data(results)
+        card_id += 1
+        if len(tasks) % 5000 == 0:
+            logger.info('来一波')
+            results = await asyncio.gather(*tasks)
+            save_data(results)
+            tasks = []
+    if len(tasks) > 0:
+        logger.info('清理库存')
+        results = await asyncio.gather(*tasks)
+        save_data(results)
 
 
 def save_data(results):
+    global error_num
     for response_content in results:
         try:
             json_content = json.loads(response_content)
             status_info = json_content['status']
             if status_info['retCode'] != 0:
                 logger.error('response status error: {}', status_info)
+                error_num += 1
                 continue
             data_info = json_content['data']
             page_list = data_info['pages']
@@ -68,8 +84,9 @@ def save_data(results):
             }
             # print(wedding_info)
         except Exception as e:
-            logger.error('parse result error, card_id:{}', response_content.get('data').get('cardId'))
+            logger.error('parse result error, card_id:{}', json.loads(response_content).get('data').get('cardId'))
             logger.exception(e)
+    logger.info('共有{}条记录不存在', error_num)
 
 
 if __name__ == '__main__':
