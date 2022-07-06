@@ -23,11 +23,12 @@ async def scraw(card_id_base64):
 
 
 async def get_data():
-    # begin_id = 68809123
+    # cailichao_id = 68809123
     tasks = []
+    # 60400001即2022/01/01
     card_id , target = 60400001, 60500002
+    # card_id , target = 60400001, 60400002
     while card_id < target:
-        # for card_id in range(60400014, 60400016):
         suffix = 'fire_cloud'
         card_id_str = str(card_id) + suffix
         card_id_base64 = base64.b64encode(card_id_str.encode()).decode()
@@ -54,7 +55,7 @@ def save_data(results):
             json_content = json.loads(response_content)
             status_info = json_content['status']
             if status_info['retCode'] != 0:
-                logger.error('response status error: {}', status_info)
+                # logger.error('response status error: {}', status_info)
                 error_num += 1
                 continue
             data_info = json_content['data']
@@ -82,7 +83,8 @@ def save_data(results):
                 'weding_pics': ';'.join(wedding_pics),
                 'all_content': data_info
             }
-            # print(wedding_info)
+            if wedding_info['brideName'] and '刘聪' in wedding_info['brideName']:
+                print(wedding_info)
         except Exception as e:
             logger.error('parse result error, card_id:{}', json.loads(response_content).get('data').get('cardId'))
             logger.exception(e)
