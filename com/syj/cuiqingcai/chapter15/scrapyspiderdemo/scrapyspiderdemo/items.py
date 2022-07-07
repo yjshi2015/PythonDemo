@@ -6,7 +6,8 @@
 import scrapy
 
 
-class ScrapyspiderdemoItem(scrapy.Item):
-    # define the fields for your item here like:
-    # name = scrapy.Field()
-    pass
+class HttpbinDemoItem(scrapy.Item):
+    args = scrapy.Field()
+    headers = scrapy.Field()
+    origin = scrapy.Field()
+    url = scrapy.Field()

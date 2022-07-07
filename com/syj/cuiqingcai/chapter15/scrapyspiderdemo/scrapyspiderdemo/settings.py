@@ -44,15 +44,17 @@ ROBOTSTXT_OBEY = True
 
 # Enable or disable spider middlewares
 # See https://docs.scrapy.org/en/latest/topics/spider-middleware.html
-#SPIDER_MIDDLEWARES = {
-#    'scrapyspiderdemo.middlewares.ScrapyspiderdemoSpiderMiddleware': 543,
-#}
+SPIDER_MIDDLEWARES = {
+   'scrapyspiderdemo.middlewares.CustomizeSpiderMiddleware': 543,
+}
 
 # Enable or disable downloader middlewares
 # See https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
-#DOWNLOADER_MIDDLEWARES = {
-#    'scrapyspiderdemo.middlewares.ScrapyspiderdemoDownloaderMiddleware': 543,
-#}
+DOWNLOADER_MIDDLEWARES = {
+   'scrapyspiderdemo.middlewares.RandomUserAgentDownloaderMiddleware': 543,
+   # 设置代理
+   # 'scrapyspiderdemo.middlewares.ProxyMiddleware': 544,
+}
 
 # Enable or disable extensions
 # See https://docs.scrapy.org/en/latest/topics/extensions.html

@@ -2,14 +2,15 @@
 #
 # See documentation in:
 # https://docs.scrapy.org/en/latest/topics/spider-middleware.html
+import random
 
 from scrapy import signals
 
 # useful for handling different item types with a single interface
 from itemadapter import is_item, ItemAdapter
 
-
-class ScrapyspiderdemoSpiderMiddleware:
+# spider中间件
+class CustomizeSpiderMiddleware(object):
     # Not all methods need to be defined. If a method is not defined,
     # scrapy acts as if the spider middleware does not modify the
     # passed objects.
@@ -49,17 +50,26 @@ class ScrapyspiderdemoSpiderMiddleware:
         # that it doesn’t have a response associated.
 
         # Must return only requests (not items).
-        for r in start_requests:
-            yield r
+        for request in start_requests:
+            url = request.url
+            url += '&name=syj'
+            request = request.replace(url=url)
+            yield request
 
     def spider_opened(self, spider):
         spider.logger.info('Spider opened: %s' % spider.name)
 
 
-class ScrapyspiderdemoDownloaderMiddleware:
+class RandomUserAgentDownloaderMiddleware:
     # Not all methods need to be defined. If a method is not defined,
     # scrapy acts as if the downloader middleware does not modify the
     # passed objects.
+    def __init__(self):
+        self.user_agents = [
+            'Mozilla/5.0',
+            'firefox/110',
+            'chrome/111'
+        ]
 
     @classmethod
     def from_crawler(cls, crawler):
@@ -78,7 +88,7 @@ class ScrapyspiderdemoDownloaderMiddleware:
         # - or return a Request object
         # - or raise IgnoreRequest: process_exception() methods of
         #   installed downloader middleware will be called
-        return None
+        request.headers['User-Agent'] = random.choice(self.user_agents)
 
     def process_response(self, request, response, spider):
         # Called with the response returned from the downloader.
@@ -101,3 +111,8 @@ class ScrapyspiderdemoDownloaderMiddleware:
 
     def spider_opened(self, spider):
         spider.logger.info('Spider opened: %s' % spider.name)
+
+# download中间件
+class ProxyMiddleware(object):
+    def process_request(self, request, spider):
+        request.meta['proxy'] = 'http://xxx.xxx.xx.xxx:8090'
