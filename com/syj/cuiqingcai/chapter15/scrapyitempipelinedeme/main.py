@@ -15,4 +15,4 @@ if __name__ == '__main__':
     5、execute（execute函数是内嵌在scrapy中的，调用这个函数可以直接调用该Scrapy工程项目的爬虫脚本，这个函数的执行需要在爬虫项目的父目录下进行。execute函数里边的参数其实就是将Scrapy爬虫执行命令拆分，然后分别以一个字符的方式放到了一个数组中。
     '''
     sys.path.append(os.path.dirname(os.path.abspath(__file__)))
-    execute(['scrapy', 'crawl', 'httpbin'])
+    execute(['scrapy', 'crawl', 'scrape'])

@@ -5,6 +5,7 @@
       <option name="ignoredIdentifiers">
         <list>
           <option value="syj.cuiqingcai.chapter15.scrapytutorial.scrapytutorial.spiders.quotes.scrapytutorial" />
+          <option value="syj.cuiqingcai.chapter15.scrapyitempipelinedeme.scrapyitempipelinedeme.pipelines.scrapyitempipelinedeme" />
         </list>
       </option>
     </inspection_tool>
