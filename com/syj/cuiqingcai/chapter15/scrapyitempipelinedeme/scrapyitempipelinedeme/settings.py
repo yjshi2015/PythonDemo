@@ -57,9 +57,9 @@ ROBOTSTXT_OBEY = False
 
 # Enable or disable extensions
 # See https://docs.scrapy.org/en/latest/topics/extensions.html
-#EXTENSIONS = {
-#    'scrapy.extensions.telnet.TelnetConsole': None,
-#}
+EXTENSIONS = {
+   'scrapyitempipelinedeme.extensions.NotificationExtension': 100,
+}
 
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
@@ -71,9 +71,9 @@ MONGODB_CONNECTION_STRING = 'mongodb://localhost:27017'
 MONGODB_DATABASE = 'movies_db'
 MONGODB_COLLECTION = 'movies_tab'
 
-# IMAGES_STORE = 'D:\\tmp\\movies\\images'
-# IMAGES_STORE = 'D://tmp//movies//images'
-IMAGES_STORE = './images'
+# windows下路径的写法
+IMAGES_STORE = 'D:\\tmp\\movies\\images'
+# IMAGES_STORE = './images'
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://docs.scrapy.org/en/latest/topics/autothrottle.html

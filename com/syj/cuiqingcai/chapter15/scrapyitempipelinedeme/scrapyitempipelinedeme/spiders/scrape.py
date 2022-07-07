@@ -7,7 +7,7 @@ class ScrapeSpider(scrapy.Spider):
     name = 'scrape'
     allowed_domains = ['ssr1.scrape.center']
     base_url = 'https://ssr1.scrape.center'
-    max_page = 2
+    max_page = 1
 
     def start_requests(self):
         for i in range(1, self.max_page + 1):
