@@ -10,6 +10,7 @@ from selenium.webdriver import ChromeOptions
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
+from gerapy_selenium import SeleniumMiddleware
 import time
 # useful for handling different item types with a single interface
 from itemadapter import is_item, ItemAdapter
@@ -81,6 +82,8 @@ class SeleniumMiddleware:
         options.add_experimental_option('excludeSwitches', ['enable-automation'])
         # 隐藏自动扩展信息
         options.add_experimental_option('useAutomationExtension', False)
+        # 无头模式
+        # options.add_argument('--headless')
         browser = webdriver.Chrome(options=options)
         browser.execute_cdp_cmd('Page.addScriptToEvaluateOnNewDocument', {
             'source': 'Object.defineProperty(navigator, "webdriver", {get: ()=> undefine})'

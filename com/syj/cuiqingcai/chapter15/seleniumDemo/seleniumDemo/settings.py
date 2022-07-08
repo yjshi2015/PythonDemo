@@ -51,7 +51,8 @@ ROBOTSTXT_OBEY = False
 # Enable or disable downloader middlewares
 # See https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 DOWNLOADER_MIDDLEWARES = {
-   'seleniumDemo.middlewares.SeleniumMiddleware': 543,
+   # 'seleniumDemo.middlewares.SeleniumMiddleware': 543,
+   'seleniumDemo.downloadermiddlewares.SeleniumMiddleware': 543,
 }
 
 # Enable or disable extensions
@@ -86,3 +87,34 @@ DOWNLOADER_MIDDLEWARES = {
 #HTTPCACHE_DIR = 'httpcache'
 #HTTPCACHE_IGNORE_HTTP_CODES = []
 #HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache.FilesystemCacheStorage'
+
+
+# scrapy配合selenium的配置
+import logging
+
+# selenium logging level
+GERAPY_SELENIUM_LOGGING_LEVEL = logging.WARNING
+
+# selenium timeout
+GERAPY_SELENIUM_DOWNLOAD_TIMEOUT = 30
+
+# selenium browser window
+GERAPY_SELENIUM_WINDOW_WIDTH = 1400
+GERAPY_SELENIUM_WINDOW_HEIGHT = 700
+
+# selenium settings
+GERAPY_SELENIUM_HEADLESS = False
+GERAPY_SELENIUM_EXECUTABLE_PATH = None
+GERAPY_SELENIUM_IGNORE_HTTPS_ERRORS = False
+GERAPY_SELENIUM_PRETEND = True
+
+# selenium args
+GERAPY_SELENIUM_DISABLE_EXTENSIONS = True
+GERAPY_SELENIUM_HIDE_SCROLLBARS = True
+GERAPY_SELENIUM_MUTE_AUDIO = True
+GERAPY_SELENIUM_NO_SANDBOX = True
+GERAPY_SELENIUM_DISABLE_SETUID_SANDBOX = True
+GERAPY_SELENIUM_DISABLE_GPU = True
+
+GERAPY_SELENIUM_SCREENSHOT = None
+GERAPY_SELENIUM_SLEEP = 0

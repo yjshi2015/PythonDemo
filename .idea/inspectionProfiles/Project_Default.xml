@@ -6,6 +6,7 @@
         <list>
           <option value="syj.cuiqingcai.chapter15.scrapytutorial.scrapytutorial.spiders.quotes.scrapytutorial" />
           <option value="syj.cuiqingcai.chapter15.scrapyitempipelinedeme.scrapyitempipelinedeme.pipelines.scrapyitempipelinedeme" />
+          <option value="syj.cuiqingcai.chapter15.seleniumDemo.seleniumDemo.spiders.book.seleniumDemo" />
         </list>
       </option>
     </inspection_tool>

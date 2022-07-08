@@ -1,7 +1,7 @@
 import re
 
 import scrapy
-from scrapy import Request
+from seleniumDemo.spiders.request import SeleniumRequest
 from seleniumDemo.items import BookItem
 
 times = 0
@@ -13,7 +13,7 @@ class BookSpider(scrapy.Spider):
 
     def start_requests(self):
         start_url = f'{self.base_url}/page/1'
-        yield Request(start_url, callback=self.parse_index)
+        yield SeleniumRequest(start_url, callback=self.parse_index, wait_for='#index .name')
 
     def parse_index(self, response):
         global times
@@ -23,7 +23,7 @@ class BookSpider(scrapy.Spider):
             if times > 1: return None
             detail_url = item.css('a::attr(href)').extract_first()
             detail_url = response.urljoin(detail_url)
-            yield Request(detail_url, callback=self.parse_detail, priority=2)
+            yield SeleniumRequest(detail_url, callback=self.parse_detail, priority=2, wait_for='.item .name')
 
         # 暂且不访问下一页数据
         # match = re.search(r'page/(\d+)', response.url)
