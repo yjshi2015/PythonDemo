@@ -6,8 +6,9 @@ import time
 from Crypto.Cipher import AES
 import httpx
 import snappy
-from com.syj.ibox.js.PyExecJsDemo import get_bytes
-from com.syj.ibox.js.PyExecJsDemo import get_trans_id
+from PyExecJsDemo import get_bytes
+from PyExecJsDemo import get_trans_id
+from IboxPyExecJs import get_response_body
 
 key_url = 'https://web-001.cloud.servicewechat.com/wxa-qbase/jsoperatewxdata'
 
@@ -84,6 +85,10 @@ def aes_encrypt(key_bytes, text):
     aes = AES.new(key_bytes, AES.MODE_CBC, key_bytes)
     bytes = aes.encrypt(padding_pkcs7(text))
     return bytes
+
+def aes_decrypt(key_bytes, encrypt_text):
+    aes = AES.new(key_bytes, AES.MODE_CBC, key_bytes)
+    return aes.decrypt(encrypt_text)
 
 
 def get_key_token():
@@ -162,6 +167,13 @@ def get_request():
         response = client.post(base_url, headers=headers, content=aes_data)
         print(response.content)
 
+        data = aes_decrypt(key_bytes, response.content)
+        data_list = []
+        for i in data:
+            data_list.append(i)
+        print(data_list)
+        result = get_response_body(data_list)
+        print(result)
 
 if __name__ == '__main__':
     get_request()
