@@ -9,6 +9,8 @@ import snappy
 from PyExecJsDemo import get_bytes
 from PyExecJsDemo import get_trans_id
 from IboxPyExecJs import get_response_body
+from IboxPyExecJsDealResponse import get_response_body
+from IboxResponse import IboxResponsehh
 
 key_url = 'https://web-001.cloud.servicewechat.com/wxa-qbase/jsoperatewxdata'
 
@@ -163,17 +165,23 @@ def get_request():
     aes_data = aes_encrypt(key_bytes, data)
 
     headers = get_headers(timestamp)
+    iboxResponse = IboxResponsehh()
     with httpx.Client(http2=True) as client:
         response = client.post(base_url, headers=headers, content=aes_data)
         print(response.content)
+        iboxResponse = response
+        iboxResponse.sec
+        iboxResponse.key
 
-        data = aes_decrypt(key_bytes, response.content)
-        data_list = []
-        for i in data:
-            data_list.append(i)
-        print(data_list)
-        result = get_response_body(data_list)
+        result = get_response_body(response)
         print(result)
+        # data = aes_decrypt(key_bytes, response.content)
+        # data_list = []
+        # for i in data:
+        #     data_list.append(i)
+        # print(data_list)
+        # result = get_response_body(data_list)
+        # print(result)
 
 if __name__ == '__main__':
     get_request()
