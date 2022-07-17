@@ -15321,6 +15321,7 @@ container_service = function (i, c) {
 
 
 function first_decrypt(e, key) {
+	return key
 	var i = e.data;
 
     var x = new Uint8Array(window.array_buffer_module.base64ToArrayBuffer(key))

@@ -15116,6 +15116,6 @@ function get_request_params(params) {
 function realResponse(response_bytes) {
     res_bytes = new Uint8Array(response_bytes)
     var E = window.HttpWeb.HTTPResponse.decode(res_bytes)
-    // return JSON.parse(E.bodyString)
-    return 'NB'
+    return JSON.parse(E.bodyString)
+    // return 'NB'
 }

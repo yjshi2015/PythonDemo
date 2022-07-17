@@ -7,10 +7,10 @@ class Son(Father):
         super().__init__(name)
         self.age = age
         self.bir = bir
-        print(f'this is son, name:{name}')
+        print(f'this is son init, name:{name}, age:{self.age}, bir:{self.bir}')
 
     def get_info(self):
-        print(f'this is son, name :{self.name}, age:{self.age}')
+        print(f'this is son get_info, name :{self.name}, age:{self.age}, bir:{self.bir}')
 
 
 if __name__ == '__main__':

@@ -12,8 +12,8 @@ file = '../js/services.js'
 ctx = execjs.compile(open(file, encoding='utf-8').read(), cwd='C:\\Users\\xiongda\\AppData\\Roaming\\npm\\node_modules')
 
 
-def get_response_body(response):
-    return ctx.call('first_decrypt', response)
+def get_response_body(response, key):
+    return ctx.call('first_decrypt', response, key)
 
 
 if __name__ == '__main__':
