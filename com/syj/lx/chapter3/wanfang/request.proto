@@ -1,0 +1,32 @@
+syntax = 'proto3';
+
+message SearchService {
+
+  message SearchSort {
+//    string field = 1;
+    int32 order = 2;
+  }
+
+  message Second {
+//    string field = 1;
+    string value = 2;
+  }
+
+  message CommonRequest {
+    string searchType = 1;
+    string searchWord = 2;
+    SearchSort searchSort = 3;
+    repeated Second secondsList = 4;
+    int32 currentPage = 5;
+    int32 pageSize = 6;
+    int32 searchScope = 7;
+    repeated int32 searchFilterList = 8;
+    bool languageExpand = 9;
+    bool topicExpand = 10;
+  }
+
+  message SearchRequest {
+    CommonRequest commonRequest = 1;
+    int32 interfaceType = 2;
+  }
+}
