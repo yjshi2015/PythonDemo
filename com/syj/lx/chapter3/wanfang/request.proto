@@ -3,12 +3,12 @@ syntax = 'proto3';
 message SearchService {
 
   message SearchSort {
-//    string field = 1;
+    string field = 1;
     int32 order = 2;
   }
 
   message Second {
-//    string field = 1;
+    string field = 1;
     string value = 2;
   }
 
