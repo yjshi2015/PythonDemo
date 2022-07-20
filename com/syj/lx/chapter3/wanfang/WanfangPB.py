@@ -1,4 +1,5 @@
 import request_pb2 as pb
+from google.protobuf.json_format import MessageToDict
 import httpx
 
 search_request = pb.SearchService.SearchRequest()
@@ -48,10 +49,25 @@ headers = {
     'x-user-agent': "grpc-web-javascript/0.1"
 }
 
+from blackboxprotobuf import protobuf_to_json
+import struct,json
+# data_len = struct.unpack(">i", detail_resp[1:5])[0]
+# data = json.loads(protobuf_to_json(detail_resp[5: 5 + data_len])[0])['1']['5']
+# print(data)
+
 url = 'https://s.wanfangdata.com.cn/SearchService.SearchService/search'
 with httpx.Client(http2=True) as client:
     response = client.post(url, data=data, headers=headers)
     print(response.content)
+
+    data_len = struct.unpack(">i", response.content[1:5])[0]
+    data = json.loads(protobuf_to_json(response.content[5: 5 + data_len])[0])
+    print(data)
+
+    info = pb.SearchService.SearchResponse()
+    info.ParseFromString(response.content[5: 5 + data_len])
+    _data = MessageToDict(info, preserving_proto_field_name=True)
+    print(_data)
 
 # response = requests.post(url=url, data=bytes_head+bytes_body, headers=headers)
 # print(response.content)

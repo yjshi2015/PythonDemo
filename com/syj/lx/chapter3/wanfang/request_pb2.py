@@ -19,7 +19,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   syntax='proto3',
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n\rrequest.proto\"\xd8\x03\n\rSearchService\x1a*\n\nSearchSort\x12\r\n\x05\x66ield\x18\x01 \x01(\t\x12\r\n\x05order\x18\x02 \x01(\x05\x1a&\n\x06Second\x12\r\n\x05\x66ield\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t\x1a\x95\x02\n\rCommonRequest\x12\x12\n\nsearchType\x18\x01 \x01(\t\x12\x12\n\nsearchWord\x18\x02 \x01(\t\x12-\n\nsearchSort\x18\x03 \x01(\x0b\x32\x19.SearchService.SearchSort\x12*\n\x0bsecondsList\x18\x04 \x03(\x0b\x32\x15.SearchService.Second\x12\x13\n\x0b\x63urrentPage\x18\x05 \x01(\x05\x12\x10\n\x08pageSize\x18\x06 \x01(\x05\x12\x13\n\x0bsearchScope\x18\x07 \x01(\x05\x12\x18\n\x10searchFilterList\x18\x08 \x03(\x05\x12\x16\n\x0elanguageExpand\x18\t \x01(\x08\x12\x13\n\x0btopicExpand\x18\n \x01(\x08\x1a[\n\rSearchRequest\x12\x33\n\rcommonRequest\x18\x01 \x01(\x0b\x32\x1c.SearchService.CommonRequest\x12\x15\n\rinterfaceType\x18\x02 \x01(\x05\x62\x06proto3'
+  serialized_pb=b'\n\rrequest.proto\"\xd5\x04\n\rSearchService\x1a*\n\nSearchSort\x12\r\n\x05\x66ield\x18\x01 \x01(\t\x12\r\n\x05order\x18\x02 \x01(\x05\x1a&\n\x06Second\x12\r\n\x05\x66ield\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t\x1a\x95\x02\n\rCommonRequest\x12\x12\n\nsearchType\x18\x01 \x01(\t\x12\x12\n\nsearchWord\x18\x02 \x01(\t\x12-\n\nsearchSort\x18\x03 \x01(\x0b\x32\x19.SearchService.SearchSort\x12*\n\x0bsecondsList\x18\x04 \x03(\x0b\x32\x15.SearchService.Second\x12\x13\n\x0b\x63urrentPage\x18\x05 \x01(\x05\x12\x10\n\x08pageSize\x18\x06 \x01(\x05\x12\x13\n\x0bsearchScope\x18\x07 \x01(\x05\x12\x18\n\x10searchFilterList\x18\x08 \x03(\x05\x12\x16\n\x0elanguageExpand\x18\t \x01(\x08\x12\x13\n\x0btopicExpand\x18\n \x01(\x08\x1a[\n\rSearchRequest\x12\x33\n\rcommonRequest\x18\x01 \x01(\x0b\x32\x1c.SearchService.CommonRequest\x12\x15\n\rinterfaceType\x18\x02 \x01(\x05\x1a{\n\x0eSearchResponse\x12\x0e\n\x06status\x18\x01 \x01(\x08\x12\x0f\n\x07message\x18\x02 \x01(\t\x12\r\n\x05\x63ount\x18\x03 \x01(\x05\x12\x39\n\rresourcesList\x18\x04 \x03(\x0b\x32\".com.wanfangdata.resource.Resource\"\xcb\r\n\x03\x63om\x1a\xc3\r\n\x0bwanfangdata\x1a\xb3\r\n\x08resource\x1a_\n\x08Resource\x12\x0c\n\x04type\x18\x01 \x01(\t\x12\x0b\n\x03uid\x18\x03 \x01(\t\x12\x38\n\nperiodical\x18\x65 \x01(\x0b\x32$.com.wanfangdata.resource.Periodical\x1a\xc5\x0c\n\nPeriodical\x12\n\n\x02id\x18\x01 \x01(\t\x12\x11\n\ttitleList\x18\x02 \x03(\t\x12\x13\n\x0b\x63reatorList\x18\x03 \x03(\t\x12\x14\n\x0c\x66irstcreator\x18\x04 \x01(\t\x12\x15\n\rscholaridList\x18\x05 \x03(\t\x12\x1a\n\x12\x66oreigncreatorList\x18\x06 \x03(\t\x12\x1c\n\x14\x63reatorforsearchList\x18\x07 \x03(\t\x12\x1c\n\x14organizationnormList\x18\x08 \x03(\t\x12\x1b\n\x13organizationnewList\x18\t \x03(\t\x12 \n\x18originalorganizationList\x18\n \x03(\t\x12!\n\x19organizationforsearchList\x18\x0b \x03(\t\x12\x1d\n\x15originalclasscodeList\x18\x0c \x03(\t\x12\x1d\n\x15machinedclasscodeList\x18\r \x03(\t\x12\x1e\n\x16\x63lasscodeforsearchList\x18\x0e \x03(\t\x12\x19\n\x11\x63ontentsearchList\x18\x0f \x03(\t\x12\x14\n\x0ckeywordsList\x18\x10 \x03(\t\x12\x1b\n\x13\x66oreignkeywordsList\x18\x11 \x03(\t\x12\x1c\n\x14machinedkeywordsList\x18\x12 \x03(\t\x12\x1c\n\x14keywordforsearchList\x18\x13 \x03(\t\x12\x14\n\x0c\x61\x62stractList\x18\x14 \x03(\t\x12\x12\n\ncitedcount\x18\x15 \x01(\x03\x12\x14\n\x0cperiodicalid\x18\x16 \x01(\t\x12$\n\x1cperiodicaltitleforsearchList\x18\x17 \x03(\t\x12\x1b\n\x13periodicaltitleList\x18\x18 \x03(\t\x12\x14\n\x0csourcedbList\x18\x19 \x03(\t\x12\x0c\n\x04isoa\x18\x1a \x01(\x08\x12\x10\n\x08\x66undList\x18\x1b \x03(\t\x12\x13\n\x0bpublishdate\x18\x1c \x01(\t\x12\x1a\n\x12metadataonlinedate\x18\x1d \x01(\t\x12\x1a\n\x12\x66ulltextonlinedate\x18\x1e \x01(\t\x12\x13\n\x0bservicemode\x18\x1f \x01(\x03\x12\x13\n\x0bhasfulltext\x18  \x01(\x08\x12\x13\n\x0bpublishyear\x18! \x01(\x05\x12\r\n\x05issue\x18\" \x01(\t\x12\r\n\x05volum\x18# \x01(\t\x12\x0c\n\x04page\x18$ \x01(\t\x12\x0e\n\x06pageno\x18% \x01(\t\x12\x12\n\ncolumnList\x18& \x03(\t\x12\x1a\n\x12\x63oreperiodicalList\x18\' \x03(\t\x12\x14\n\x0c\x66ulltextpath\x18( \x01(\t\x12\x0b\n\x03\x64oi\x18) \x01(\t\x12\x15\n\rauthororgList\x18* \x03(\t\x12\x19\n\x11thirdpartyurlList\x18+ \x03(\t\x12\x10\n\x08language\x18, \x01(\t\x12\x0c\n\x04issn\x18- \x01(\t\x12\n\n\x02\x63n\x18. \x01(\t\x12\x17\n\x0fsequenceinissue\x18/ \x01(\x05\x12\x19\n\x11metadataviewcount\x18\x30 \x01(\x05\x12 \n\x18thirdpartylinkclickcount\x18\x31 \x01(\x03\x12\x15\n\rdownloadcount\x18\x32 \x01(\x03\x12\x19\n\x11prepublishversion\x18\x33 \x01(\t\x12\x19\n\x11prepublishgroupid\x18\x34 \x01(\t\x12\x15\n\rpublishstatus\x18\x35 \x01(\t\x12\x0c\n\x04type\x18\x36 \x01(\t\x12\x16\n\x0esinglesourcedb\x18\x37 \x01(\t\x12\x13\n\x0b\x65xportcount\x18\x38 \x01(\x03\x12\x1f\n\x17periodicalclasscodeList\x18\x39 \x03(\t\x12\x1b\n\x13scholaridauthorList\x18: \x03(\t\x12\x12\n\ncitedscore\x18; \x01(\x03\x12\x15\n\rdownloadscore\x18< \x01(\x03\x12\x11\n\tyearscore\x18= \x01(\x03\x12\x11\n\ttypescore\x18> \x01(\x03\x12\x15\n\rprojectidList\x18? \x03(\t\x12\x19\n\x11\x66undgroupnameList\x18@ \x03(\t\x12\x1a\n\x12projectgrantnoList\x18\x41 \x03(\t\x12\x16\n\x0eisthirdservice\x18\x42 \x01(\x08\x12\x18\n\x10lastmodifiedtime\x18\x43 \x01(\tb\x06proto3'
 )
 
 
@@ -233,6 +233,58 @@ _SEARCHSERVICE_SEARCHREQUEST = _descriptor.Descriptor(
   serialized_end=490,
 )
 
+_SEARCHSERVICE_SEARCHRESPONSE = _descriptor.Descriptor(
+  name='SearchResponse',
+  full_name='SearchService.SearchResponse',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='status', full_name='SearchService.SearchResponse.status', index=0,
+      number=1, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='message', full_name='SearchService.SearchResponse.message', index=1,
+      number=2, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='count', full_name='SearchService.SearchResponse.count', index=2,
+      number=3, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='resourcesList', full_name='SearchService.SearchResponse.resourcesList', index=3,
+      number=4, type=11, cpp_type=10, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=492,
+  serialized_end=615,
+)
+
 _SEARCHSERVICE = _descriptor.Descriptor(
   name='SearchService',
   full_name='SearchService',
@@ -244,7 +296,7 @@ _SEARCHSERVICE = _descriptor.Descriptor(
   ],
   extensions=[
   ],
-  nested_types=[_SEARCHSERVICE_SEARCHSORT, _SEARCHSERVICE_SECOND, _SEARCHSERVICE_COMMONREQUEST, _SEARCHSERVICE_SEARCHREQUEST, ],
+  nested_types=[_SEARCHSERVICE_SEARCHSORT, _SEARCHSERVICE_SECOND, _SEARCHSERVICE_COMMONREQUEST, _SEARCHSERVICE_SEARCHREQUEST, _SEARCHSERVICE_SEARCHRESPONSE, ],
   enum_types=[
   ],
   serialized_options=None,
@@ -254,7 +306,618 @@ _SEARCHSERVICE = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=18,
-  serialized_end=490,
+  serialized_end=615,
+)
+
+
+_COM_WANFANGDATA_RESOURCE_RESOURCE = _descriptor.Descriptor(
+  name='Resource',
+  full_name='com.wanfangdata.resource.Resource',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='type', full_name='com.wanfangdata.resource.Resource.type', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='uid', full_name='com.wanfangdata.resource.Resource.uid', index=1,
+      number=3, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='periodical', full_name='com.wanfangdata.resource.Resource.periodical', index=2,
+      number=101, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=654,
+  serialized_end=749,
+)
+
+_COM_WANFANGDATA_RESOURCE_PERIODICAL = _descriptor.Descriptor(
+  name='Periodical',
+  full_name='com.wanfangdata.resource.Periodical',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='id', full_name='com.wanfangdata.resource.Periodical.id', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='titleList', full_name='com.wanfangdata.resource.Periodical.titleList', index=1,
+      number=2, type=9, cpp_type=9, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='creatorList', full_name='com.wanfangdata.resource.Periodical.creatorList', index=2,
+      number=3, type=9, cpp_type=9, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='firstcreator', full_name='com.wanfangdata.resource.Periodical.firstcreator', index=3,
+      number=4, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='scholaridList', full_name='com.wanfangdata.resource.Periodical.scholaridList', index=4,
+      number=5, type=9, cpp_type=9, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='foreigncreatorList', full_name='com.wanfangdata.resource.Periodical.foreigncreatorList', index=5,
+      number=6, type=9, cpp_type=9, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='creatorforsearchList', full_name='com.wanfangdata.resource.Periodical.creatorforsearchList', index=6,
+      number=7, type=9, cpp_type=9, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='organizationnormList', full_name='com.wanfangdata.resource.Periodical.organizationnormList', index=7,
+      number=8, type=9, cpp_type=9, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='organizationnewList', full_name='com.wanfangdata.resource.Periodical.organizationnewList', index=8,
+      number=9, type=9, cpp_type=9, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='originalorganizationList', full_name='com.wanfangdata.resource.Periodical.originalorganizationList', index=9,
+      number=10, type=9, cpp_type=9, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='organizationforsearchList', full_name='com.wanfangdata.resource.Periodical.organizationforsearchList', index=10,
+      number=11, type=9, cpp_type=9, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='originalclasscodeList', full_name='com.wanfangdata.resource.Periodical.originalclasscodeList', index=11,
+      number=12, type=9, cpp_type=9, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='machinedclasscodeList', full_name='com.wanfangdata.resource.Periodical.machinedclasscodeList', index=12,
+      number=13, type=9, cpp_type=9, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='classcodeforsearchList', full_name='com.wanfangdata.resource.Periodical.classcodeforsearchList', index=13,
+      number=14, type=9, cpp_type=9, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='contentsearchList', full_name='com.wanfangdata.resource.Periodical.contentsearchList', index=14,
+      number=15, type=9, cpp_type=9, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='keywordsList', full_name='com.wanfangdata.resource.Periodical.keywordsList', index=15,
+      number=16, type=9, cpp_type=9, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='foreignkeywordsList', full_name='com.wanfangdata.resource.Periodical.foreignkeywordsList', index=16,
+      number=17, type=9, cpp_type=9, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='machinedkeywordsList', full_name='com.wanfangdata.resource.Periodical.machinedkeywordsList', index=17,
+      number=18, type=9, cpp_type=9, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='keywordforsearchList', full_name='com.wanfangdata.resource.Periodical.keywordforsearchList', index=18,
+      number=19, type=9, cpp_type=9, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='abstractList', full_name='com.wanfangdata.resource.Periodical.abstractList', index=19,
+      number=20, type=9, cpp_type=9, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='citedcount', full_name='com.wanfangdata.resource.Periodical.citedcount', index=20,
+      number=21, type=3, cpp_type=2, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='periodicalid', full_name='com.wanfangdata.resource.Periodical.periodicalid', index=21,
+      number=22, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='periodicaltitleforsearchList', full_name='com.wanfangdata.resource.Periodical.periodicaltitleforsearchList', index=22,
+      number=23, type=9, cpp_type=9, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='periodicaltitleList', full_name='com.wanfangdata.resource.Periodical.periodicaltitleList', index=23,
+      number=24, type=9, cpp_type=9, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='sourcedbList', full_name='com.wanfangdata.resource.Periodical.sourcedbList', index=24,
+      number=25, type=9, cpp_type=9, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='isoa', full_name='com.wanfangdata.resource.Periodical.isoa', index=25,
+      number=26, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='fundList', full_name='com.wanfangdata.resource.Periodical.fundList', index=26,
+      number=27, type=9, cpp_type=9, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='publishdate', full_name='com.wanfangdata.resource.Periodical.publishdate', index=27,
+      number=28, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='metadataonlinedate', full_name='com.wanfangdata.resource.Periodical.metadataonlinedate', index=28,
+      number=29, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='fulltextonlinedate', full_name='com.wanfangdata.resource.Periodical.fulltextonlinedate', index=29,
+      number=30, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='servicemode', full_name='com.wanfangdata.resource.Periodical.servicemode', index=30,
+      number=31, type=3, cpp_type=2, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='hasfulltext', full_name='com.wanfangdata.resource.Periodical.hasfulltext', index=31,
+      number=32, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='publishyear', full_name='com.wanfangdata.resource.Periodical.publishyear', index=32,
+      number=33, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='issue', full_name='com.wanfangdata.resource.Periodical.issue', index=33,
+      number=34, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='volum', full_name='com.wanfangdata.resource.Periodical.volum', index=34,
+      number=35, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='page', full_name='com.wanfangdata.resource.Periodical.page', index=35,
+      number=36, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='pageno', full_name='com.wanfangdata.resource.Periodical.pageno', index=36,
+      number=37, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='columnList', full_name='com.wanfangdata.resource.Periodical.columnList', index=37,
+      number=38, type=9, cpp_type=9, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='coreperiodicalList', full_name='com.wanfangdata.resource.Periodical.coreperiodicalList', index=38,
+      number=39, type=9, cpp_type=9, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='fulltextpath', full_name='com.wanfangdata.resource.Periodical.fulltextpath', index=39,
+      number=40, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='doi', full_name='com.wanfangdata.resource.Periodical.doi', index=40,
+      number=41, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='authororgList', full_name='com.wanfangdata.resource.Periodical.authororgList', index=41,
+      number=42, type=9, cpp_type=9, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='thirdpartyurlList', full_name='com.wanfangdata.resource.Periodical.thirdpartyurlList', index=42,
+      number=43, type=9, cpp_type=9, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='language', full_name='com.wanfangdata.resource.Periodical.language', index=43,
+      number=44, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='issn', full_name='com.wanfangdata.resource.Periodical.issn', index=44,
+      number=45, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='cn', full_name='com.wanfangdata.resource.Periodical.cn', index=45,
+      number=46, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='sequenceinissue', full_name='com.wanfangdata.resource.Periodical.sequenceinissue', index=46,
+      number=47, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='metadataviewcount', full_name='com.wanfangdata.resource.Periodical.metadataviewcount', index=47,
+      number=48, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='thirdpartylinkclickcount', full_name='com.wanfangdata.resource.Periodical.thirdpartylinkclickcount', index=48,
+      number=49, type=3, cpp_type=2, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='downloadcount', full_name='com.wanfangdata.resource.Periodical.downloadcount', index=49,
+      number=50, type=3, cpp_type=2, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='prepublishversion', full_name='com.wanfangdata.resource.Periodical.prepublishversion', index=50,
+      number=51, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='prepublishgroupid', full_name='com.wanfangdata.resource.Periodical.prepublishgroupid', index=51,
+      number=52, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='publishstatus', full_name='com.wanfangdata.resource.Periodical.publishstatus', index=52,
+      number=53, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='type', full_name='com.wanfangdata.resource.Periodical.type', index=53,
+      number=54, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='singlesourcedb', full_name='com.wanfangdata.resource.Periodical.singlesourcedb', index=54,
+      number=55, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='exportcount', full_name='com.wanfangdata.resource.Periodical.exportcount', index=55,
+      number=56, type=3, cpp_type=2, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='periodicalclasscodeList', full_name='com.wanfangdata.resource.Periodical.periodicalclasscodeList', index=56,
+      number=57, type=9, cpp_type=9, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='scholaridauthorList', full_name='com.wanfangdata.resource.Periodical.scholaridauthorList', index=57,
+      number=58, type=9, cpp_type=9, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='citedscore', full_name='com.wanfangdata.resource.Periodical.citedscore', index=58,
+      number=59, type=3, cpp_type=2, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='downloadscore', full_name='com.wanfangdata.resource.Periodical.downloadscore', index=59,
+      number=60, type=3, cpp_type=2, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='yearscore', full_name='com.wanfangdata.resource.Periodical.yearscore', index=60,
+      number=61, type=3, cpp_type=2, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='typescore', full_name='com.wanfangdata.resource.Periodical.typescore', index=61,
+      number=62, type=3, cpp_type=2, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='projectidList', full_name='com.wanfangdata.resource.Periodical.projectidList', index=62,
+      number=63, type=9, cpp_type=9, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='fundgroupnameList', full_name='com.wanfangdata.resource.Periodical.fundgroupnameList', index=63,
+      number=64, type=9, cpp_type=9, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='projectgrantnoList', full_name='com.wanfangdata.resource.Periodical.projectgrantnoList', index=64,
+      number=65, type=9, cpp_type=9, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='isthirdservice', full_name='com.wanfangdata.resource.Periodical.isthirdservice', index=65,
+      number=66, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='lastmodifiedtime', full_name='com.wanfangdata.resource.Periodical.lastmodifiedtime', index=66,
+      number=67, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=752,
+  serialized_end=2357,
+)
+
+_COM_WANFANGDATA_RESOURCE = _descriptor.Descriptor(
+  name='resource',
+  full_name='com.wanfangdata.resource',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+  ],
+  extensions=[
+  ],
+  nested_types=[_COM_WANFANGDATA_RESOURCE_RESOURCE, _COM_WANFANGDATA_RESOURCE_PERIODICAL, ],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=642,
+  serialized_end=2357,
+)
+
+_COM_WANFANGDATA = _descriptor.Descriptor(
+  name='wanfangdata',
+  full_name='com.wanfangdata',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+  ],
+  extensions=[
+  ],
+  nested_types=[_COM_WANFANGDATA_RESOURCE, ],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=626,
+  serialized_end=2357,
+)
+
+_COM = _descriptor.Descriptor(
+  name='com',
+  full_name='com',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+  ],
+  extensions=[
+  ],
+  nested_types=[_COM_WANFANGDATA, ],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=618,
+  serialized_end=2357,
 )
 
 _SEARCHSERVICE_SEARCHSORT.containing_type = _SEARCHSERVICE
@@ -264,7 +927,15 @@ _SEARCHSERVICE_COMMONREQUEST.fields_by_name['secondsList'].message_type = _SEARC
 _SEARCHSERVICE_COMMONREQUEST.containing_type = _SEARCHSERVICE
 _SEARCHSERVICE_SEARCHREQUEST.fields_by_name['commonRequest'].message_type = _SEARCHSERVICE_COMMONREQUEST
 _SEARCHSERVICE_SEARCHREQUEST.containing_type = _SEARCHSERVICE
+_SEARCHSERVICE_SEARCHRESPONSE.fields_by_name['resourcesList'].message_type = _COM_WANFANGDATA_RESOURCE_RESOURCE
+_SEARCHSERVICE_SEARCHRESPONSE.containing_type = _SEARCHSERVICE
+_COM_WANFANGDATA_RESOURCE_RESOURCE.fields_by_name['periodical'].message_type = _COM_WANFANGDATA_RESOURCE_PERIODICAL
+_COM_WANFANGDATA_RESOURCE_RESOURCE.containing_type = _COM_WANFANGDATA_RESOURCE
+_COM_WANFANGDATA_RESOURCE_PERIODICAL.containing_type = _COM_WANFANGDATA_RESOURCE
+_COM_WANFANGDATA_RESOURCE.containing_type = _COM_WANFANGDATA
+_COM_WANFANGDATA.containing_type = _COM
 DESCRIPTOR.message_types_by_name['SearchService'] = _SEARCHSERVICE
+DESCRIPTOR.message_types_by_name['com'] = _COM
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 SearchService = _reflection.GeneratedProtocolMessageType('SearchService', (_message.Message,), {
@@ -296,6 +967,13 @@ SearchService = _reflection.GeneratedProtocolMessageType('SearchService', (_mess
     # @@protoc_insertion_point(class_scope:SearchService.SearchRequest)
     })
   ,
+
+  'SearchResponse' : _reflection.GeneratedProtocolMessageType('SearchResponse', (_message.Message,), {
+    'DESCRIPTOR' : _SEARCHSERVICE_SEARCHRESPONSE,
+    '__module__' : 'request_pb2'
+    # @@protoc_insertion_point(class_scope:SearchService.SearchResponse)
+    })
+  ,
   'DESCRIPTOR' : _SEARCHSERVICE,
   '__module__' : 'request_pb2'
   # @@protoc_insertion_point(class_scope:SearchService)
@@ -305,6 +983,46 @@ _sym_db.RegisterMessage(SearchService.SearchSort)
 _sym_db.RegisterMessage(SearchService.Second)
 _sym_db.RegisterMessage(SearchService.CommonRequest)
 _sym_db.RegisterMessage(SearchService.SearchRequest)
+_sym_db.RegisterMessage(SearchService.SearchResponse)
+
+com = _reflection.GeneratedProtocolMessageType('com', (_message.Message,), {
+
+  'wanfangdata' : _reflection.GeneratedProtocolMessageType('wanfangdata', (_message.Message,), {
+
+    'resource' : _reflection.GeneratedProtocolMessageType('resource', (_message.Message,), {
+
+      'Resource' : _reflection.GeneratedProtocolMessageType('Resource', (_message.Message,), {
+        'DESCRIPTOR' : _COM_WANFANGDATA_RESOURCE_RESOURCE,
+        '__module__' : 'request_pb2'
+        # @@protoc_insertion_point(class_scope:com.wanfangdata.resource.Resource)
+        })
+      ,
+
+      'Periodical' : _reflection.GeneratedProtocolMessageType('Periodical', (_message.Message,), {
+        'DESCRIPTOR' : _COM_WANFANGDATA_RESOURCE_PERIODICAL,
+        '__module__' : 'request_pb2'
+        # @@protoc_insertion_point(class_scope:com.wanfangdata.resource.Periodical)
+        })
+      ,
+      'DESCRIPTOR' : _COM_WANFANGDATA_RESOURCE,
+      '__module__' : 'request_pb2'
+      # @@protoc_insertion_point(class_scope:com.wanfangdata.resource)
+      })
+    ,
+    'DESCRIPTOR' : _COM_WANFANGDATA,
+    '__module__' : 'request_pb2'
+    # @@protoc_insertion_point(class_scope:com.wanfangdata)
+    })
+  ,
+  'DESCRIPTOR' : _COM,
+  '__module__' : 'request_pb2'
+  # @@protoc_insertion_point(class_scope:com)
+  })
+_sym_db.RegisterMessage(com)
+_sym_db.RegisterMessage(com.wanfangdata)
+_sym_db.RegisterMessage(com.wanfangdata.resource)
+_sym_db.RegisterMessage(com.wanfangdata.resource.Resource)
+_sym_db.RegisterMessage(com.wanfangdata.resource.Periodical)
 
 
 # @@protoc_insertion_point(module_scope)

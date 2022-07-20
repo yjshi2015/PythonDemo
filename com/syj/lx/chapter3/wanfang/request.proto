@@ -29,4 +29,99 @@ message SearchService {
     CommonRequest commonRequest = 1;
     int32 interfaceType = 2;
   }
+
+
+
+  message SearchResponse {
+    bool status = 1;
+    string message = 2;
+    int32 count = 3;
+    repeated com.wanfangdata.resource.Resource resourcesList = 4;
+  }
+
+
+}
+
+message com {
+  message wanfangdata {
+    message resource {
+
+      message Resource {
+        string type = 1;
+        string uid = 3;
+        Periodical periodical = 101;
+      }
+
+      message Periodical {
+        string id = 1;
+        repeated string titleList = 2;
+        repeated string creatorList = 3;
+        string firstcreator = 4;
+        repeated string scholaridList = 5;
+        repeated string foreigncreatorList = 6;
+        repeated string creatorforsearchList = 7;
+        repeated string organizationnormList = 8;
+        repeated string organizationnewList = 9;
+        repeated string originalorganizationList = 10;
+        repeated string organizationforsearchList = 11;
+        repeated string originalclasscodeList = 12;
+        repeated string machinedclasscodeList = 13;
+        repeated string classcodeforsearchList = 14;
+        repeated string contentsearchList = 15;
+        repeated string keywordsList = 16;
+        repeated string foreignkeywordsList = 17;
+        repeated string machinedkeywordsList = 18;
+        repeated string keywordforsearchList = 19;
+        repeated string abstractList = 20;
+        int64 citedcount = 21;
+        string periodicalid = 22;
+        repeated string periodicaltitleforsearchList = 23;
+        repeated string periodicaltitleList = 24;
+        repeated string sourcedbList = 25;
+        bool isoa = 26;
+        repeated string fundList = 27;
+        string publishdate = 28;
+        string metadataonlinedate = 29;
+        string fulltextonlinedate = 30;
+        int64 servicemode = 31;
+        bool hasfulltext = 32;
+        int32 publishyear = 33;
+        string issue = 34;
+        string volum = 35;
+        string page = 36;
+        string pageno = 37;
+        repeated string columnList = 38;
+        repeated string coreperiodicalList = 39;
+        string fulltextpath = 40;
+        string doi = 41;
+        repeated string authororgList = 42;
+        repeated string thirdpartyurlList = 43;
+        string language = 44;
+        string issn = 45;
+        string cn = 46;
+        int32 sequenceinissue = 47;
+        int32 metadataviewcount = 48;
+        int64 thirdpartylinkclickcount = 49;
+        int64 downloadcount = 50;
+        string prepublishversion = 51;
+        string prepublishgroupid = 52;
+        string publishstatus = 53;
+        string type = 54;
+        string singlesourcedb = 55;
+        int64 exportcount = 56;
+        repeated string periodicalclasscodeList = 57;
+        repeated string scholaridauthorList = 58;
+        int64 citedscore = 59;
+        int64 downloadscore = 60;
+        int64 yearscore = 61;
+        int64 typescore = 62;
+        //int or string?
+        repeated string projectidList = 63;
+        repeated string fundgroupnameList = 64;
+        repeated string projectgrantnoList = 65;
+        bool isthirdservice = 66;
+        string lastmodifiedtime = 67;
+      }
+    }
+  }
 }
